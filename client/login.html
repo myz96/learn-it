@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>LOGIN PAGE</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="./css/styles.css">
+    </head>
+    <body>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-sm-6">
+              <div class="card mt-5">
+                <div class="card-body">
+                  <h1 class="card-title text-center mb-4">QUIZZY LA-LA LOGIN PAGE</h1>
+                  <form class="auth-form" data-action="login">
+                    <section id="errors"></section>
+                    <div class="form-group">
+                      <label for="email">Email:</label>
+                      <input type="email" class="form-control" name="email" id="email" placeholder="Enter email" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="password">Password:</label>
+                      <input type="password" class="form-control" name="password" id="password" placeholder="Enter password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Log in</button>
+                    <p class="text-center mt-3">Don't have an acocunt? <a href="/signup.html">Sign up here</a></p>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+      </body>
+</html>

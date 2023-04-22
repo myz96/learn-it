@@ -12,3 +12,21 @@
 .incorrectAnswer {
     background-color: red;
 }
+
+body {
+    background-color: #F9C7B9;
+  }
+  
+  .card {
+    background-color: #FDEFEF;
+  }
+  
+  .btn-primary {
+    background-color: #FFB347;
+    border-color: #FFB347;
+  }
+  
+  .btn-primary:hover {
+    background-color: #FFA533;
+    border-color: #FFA533;
+  }
