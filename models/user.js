@@ -1,58 +1,52 @@
 const db = require("../database/db")
 
-const getAllChallenges = async () => {
-  const result = await db.query("SELECT id, name FROM challenges;")
+const getAllUsers = async () => {
+  const result = await db.query("SELECT id, email, first_name, last_name FROM users;")
   return result.rows
 }
 
-const getChallengeById = async (id) => {
-  const result = await db.query(`SELECT * FROM challenges WHERE id = $1;`, [id])
+const createUser = async (first_name, last_name, email, password_hash) => {
+  const sql = "INSERT INTO users (first_name, last_name, email, password_hash) VALUES ($1, $2, $3) RETURNING first_name, last_name, email;"
+  const result = await db.query(sql, [first_name, last_name, email, password_hash])
   return result.rows
 }
 
-const deleteChallengeById = async (id) => {
-  const result = await db.query('DELETE FROM challenges WHERE id = $1', [id])
+const getUserByEmail = async (email) => {
+  const result = await db.query("SELECT * FROM users WHERE email = $1;", [email])
   return result.rows
 }
 
-const createChallenge = async (name, description, address) => {
-  const sql = "INSERT INTO challenges (name, description, address) VALUES ($1, $2, $3) RETURNING *;"
-  const result = await db.query(sql, [name, description, address])
-  return result.rows
+const deleteUserById = async (id) => {
+  const result = await db.query('DELETE FROM users WHERE id = $1', [id])
+  return result.rowCount
 }
 
-const updateChallengeById = async (id, name, description, address) => {
+const updateUserById = async (id, name, email, password_hash) => {
   let paramPosition = 2
   const valuesToUpdate = []
   const params = [id]
 
-  if(name){
-    params.push(name)
-    valuesToUpdate.push(`name = $${paramPosition}`)
-    paramPosition++
+  const addUpdate = (field, value) => {
+    if (value) {
+        params.push(value)
+        valuesToUpdate.push(`${field} = $${paramPosition}`)
+        paramPosition++
+    }
   }
 
-  if(description){
-    params.push(description)
-    valuesToUpdate.push(`description = $${paramPosition}`)
-    paramPosition++
-  }
+  addUpdate('name', name)
+  addUpdate('email', email)
+  addUpdate('password_hash', password_hash)
 
-  if(address){
-    params.push(address)
-    valuesToUpdate.push(`address = $${paramPosition}`)
-    paramPosition++
-  }
-
-  const sql = `UPDATE challenges SET ${valuesToUpdate.join(', ')} WHERE id = $1 RETURNING *`
+  const sql = `UPDATE users SET ${valuesToUpdate.join(', ')} WHERE id = $1 RETURNING *`
   const result = await db.query(sql, params)
   return result.rows
 }
 
 module.exports = {
-  getAllChallenges
-  , getChallengeById
-  , deleteChallengeById
-  , createChallenge
-  , updateChallengeById
+  createUser,
+  getUserByEmail,
+  getAllUsers,
+  updateUserById,
+  deleteUserById
 }

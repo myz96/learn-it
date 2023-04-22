@@ -15,6 +15,7 @@ CREATE TABLE quizzes (
   id SERIAL PRIMARY KEY,
   user_id INT,
   quiz TEXT,
+  title TEXT,
   prompt TEXT,
   difficulty TEXT,
   context TEXT,
@@ -28,7 +29,6 @@ CREATE TABLE questions (
   quiz_id INT,
   question TEXT,
   choices TEXT,
-  correct_answer TEXT,
   CONSTRAINT fk_questions_quizzes
     FOREIGN KEY (quiz_id)
     REFERENCES quizzes(id)
