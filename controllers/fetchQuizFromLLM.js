@@ -6,12 +6,16 @@ require('dotenv').config()
 const router = express.Router()
 
 // API route for getting a quiz from chatGPT
-// Uses query params, so can be /quiz&q=high-school-chemistry
-router.get("/quiz", async (req, res, next) => {
+router.post("/api/quizzes/", async (req, res, next) => {
     try {
-        const searchQuery = req.query.q
-        response = await fetchQuizFromLLM(searchQuery)
-        res.send('searchQuery: ' + response)
+        const topic = req.body.topic
+        const difficulty = req.body.difficulty || 'medium'
+        const context = req.body.context || ''
+        const quizQuery = { topic, difficulty, context }
+        console.log(quizQuery)
+        //const searchQuery = req.query.q
+        response = await fetchQuizFromLLM(quizQuery)
+        res.send(response)
     } catch(error) {
         console.log(error)
         return res.sendStatus(500)
@@ -19,7 +23,18 @@ router.get("/quiz", async (req, res, next) => {
 })
 
 async function fetchQuizFromLLM(quizQuery) {
-    const promptText = `Please provide a quiz with 6 multiple choice questions of medium difficulty on the topic ${quizQuery}. Provide response as a JSON object. Indicate which is the correct answer with a boolean. Only provide a JSON object, don't provide anything else.`  
+    const numberOfQuestions = 6
+
+    const promptText = `
+    Please provide a quiz with ${numberOfQuestions} multiple choice questions 
+    of ${quizQuery.difficulty} difficulty level 
+    on the topic ${quizQuery.topic}. 
+    Please incorporate questions with the context: ${quizQuery.context}.
+    Provide response as a JSON object. The top level of the JSON object shall be named questions.
+    Each possible option to the question shall be named option. 
+    Under each possible option, indicate whether it is correct or incorrect with a boolean named correct. 
+    Only provide a JSON object, don't provide anything else in your response.`  
+
     const apiUrl = 'https://api.openai.com/v1/chat/completions'
 
     const requestBody = {
