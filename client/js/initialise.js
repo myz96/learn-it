@@ -1,3 +1,3 @@
-import renderQuiz from "./quiz";
+import renderQuiz from "./quiz.js";
 
 renderQuiz()
