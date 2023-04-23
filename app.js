@@ -1,16 +1,21 @@
 require('dotenv').config()
+
 const express = require('express')
 const session = require('express-session')
-const axios = require('axios')
-const pgSession = require('connect-pg-simple')(session)
 
 const db = require('./database/db')
-const llmRouter = require("./controllers/fetchQuizFromLLM")
-// const quizzesController = require('./controllers/quizzes')
-// const usersController = require('./controllers/users')
+
+// const llmRouter = require("./controllers/fetchQuizFromLLM")
+const quizzesController = require('./controllers/quizzes')
+const questionsController = require('./controllers/questions')
+const answersController = require('./controllers/answers')
+const usersController = require('./controllers/users')
 // const sessionController = require('./controllers/session')
+
 const logger = require('./middleware/logger')
 const errorHandler = require('./middleware/error-handler')
+
+const pgSession = require('connect-pg-simple')(session)
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -18,6 +23,7 @@ const PORT = process.env.PORT || 3000
 // Set up middleware from express 
 app.use(express.static('client'))
 app.use(express.json())
+
 app.use(session({
   secret: process.env.SECRET_KEY,
   resave: false, 
@@ -28,15 +34,17 @@ app.use(session({
   })
 }))
 
-app.use(llmRouter)
+// app.use(llmRouter)
 app.use(logger)
 
-// app.use('/api/quizzes', quizzesController)
+app.use('/api/quizzes', quizzesController)
+// app.use('/api/questions', questionsController)
+// app.use('/api/answers', answersController)
 // app.use('/api/users', usersController)
 // app.use('/api/session', sessionController)
 
 app.use(errorHandler)
 
 app.listen(PORT, () => {
-  console.log('Listening on port', PORT)
+  console.log('Listening on port: ', PORT)
 })
