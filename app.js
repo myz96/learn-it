@@ -38,8 +38,8 @@ app.use(session({
 app.use(logger)
 
 app.use('/api/quizzes', quizzesController)
-// app.use('/api/questions', questionsController)
-// app.use('/api/answers', answersController)
+app.use('/api/questions', questionsController)
+app.use('/api/answers', answersController)
 // app.use('/api/users', usersController)
 // app.use('/api/session', sessionController)
 

@@ -1,7 +1,7 @@
 const db = require("../database/db")
 
-const getAllAnswers = async () => {
-  const result = await db.query("SELECT id, user_id, quiz_id, question_id FROM answers;")
+const getAllAnswers = async (id) => {
+  const result = await db.query("SELECT * FROM answers WHERE user_id = $1;", [id])
   return result.rows
 }
 
