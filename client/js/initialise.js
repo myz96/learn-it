@@ -1,8 +1,10 @@
 import createQuiz from "./components/createQuiz.js";
 import renderLoadingPage from "./components/renderLoading.js";
+import renderProgressPage from "./components/renderProgress.js";
 import renderQuiz from "./components/renderQuiz.js";
 
-renderLoadingPage()
+renderProgressPage()
+// renderLoadingPage()
 // createQuiz()
 // renderQuiz()
 

@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.get('/', async (req, res, next) => {
     try {
-        const result = await getAllAnswers()
+        const result = await getAllAnswers(1) //Replace w. session id 
         return (result.length === 0) ? res.sendStatus(404) : res.status(200).json(result)
     } catch (error) {
         return next(error)
