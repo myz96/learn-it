@@ -90,6 +90,7 @@ let questionCounter = 0
 let playerPoints = 0
 const numberOfQuestions = 5
 function getNextQuestion() {
+
 if (questionCounter <= numberOfQuestions) {
   const nextQuestion = quizResponse.questions[questionCounter]
   questionCounter++
@@ -116,13 +117,13 @@ function deleteCurrentQuestion() {
 function renderNextQuestion() {
   deleteCurrentQuestion()
   const quizQuestion = getNextQuestion()
-  console.log('in render next question..', quizQuestion)
 
   // If there's a quizQuestion, render it. If not, render the end of quiz message. 
   if (quizQuestion) {
       const quizQuestionDiv = document.createElement('div')
       quizQuestionDiv.classList.add('quizQuestion')
       quizQuestionDiv.innerHTML = `<h3>${quizQuestion.question}</h3>`
+
       for (let answerOption of quizQuestion.options) {
           const quizAnswer = document.createElement('div')
           quizAnswer.innerHTML = answerOption.option
@@ -163,17 +164,12 @@ function incorrectOptionHandler(event) {
   setTimeout(renderNextQuestion, 1000)
 }
 
-// renderQuiz()
-
-
-
-//
 // Everything below this line is a work in progress
 //
 
-
 // TODO - create a Quiz object - work in progress 
 class Quiz {
+
 constructor(questions) {
   this.score = 0
   this.questions = questions // Array of questions?
