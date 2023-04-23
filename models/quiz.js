@@ -15,9 +15,9 @@ const deleteQuizById = async (id) => {
   return result.rowCount
 }
 
-const createQuiz = async (user_id, quiz, title, prompt, difficulty, context) => {
-  const sql = "INSERT INTO quizzes (user_id, quiz, title, prompt, difficulty, context) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;"
-  const result = await db.query(sql, [user_id, quiz, title, prompt, difficulty, context])
+const createQuiz = async (user_id, quiz, title, topic, difficulty, context) => {
+  const sql = "INSERT INTO quizzes (user_id, quiz, title, topic, difficulty, context) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;"
+  const result = await db.query(sql, [user_id, quiz, title, topic, difficulty, context])
   return result.rows
 }
 

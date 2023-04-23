@@ -16,7 +16,7 @@ CREATE TABLE quizzes (
   user_id INT,
   quiz TEXT,
   title TEXT,
-  prompt TEXT,
+  topic TEXT,
   difficulty TEXT,
   context TEXT,
   CONSTRAINT fk_quizzes_users
