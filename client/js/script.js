@@ -13,62 +13,62 @@
 
 // Use this to minimise API calls to chatGPT ($$$)
 const quizResponse2 = {
-  "questions": [
-    {
-      "question": "What is the name of the Simpsons' next-door neighbor?",
-      "options": [
-        {"text": "Moe", "correct": false},
-        {"text": "Ned", "correct": true},
-        {"text": "Lenny", "correct": false},
-        {"text": "Carl", "correct": false}
-      ]
-    },
-    {
-      "question": "What is the name of Bart's best friend?",
-      "options": [
-        {"text": "Milhouse", "correct": true},
-        {"text": "Nelson", "correct": false},
-        {"text": "Martin", "correct": false},
-        {"text": "Ralph", "correct": false}
-      ]
-    },
-    {
-      "question": "What is the name of Homer's favorite bar?",
-      "options": [
-        {"text": "Moe's Tavern", "correct": true},
-        {"text": "The Rusty Nail", "correct": false},
-        {"text": "The Drunken Clam", "correct": false},
-        {"text": "The Alibi Room", "correct": false}
-      ]
-    },
-    {
-      "question": "What is the name of Lisa's jazz musician idol?",
-      "options": [
-        {"text": "Bleeding Gums Murphy", "correct": true},
-        {"text": "Cool Cat", "correct": false},
-        {"text": "Fingers Murphy", "correct": false},
-        {"text": "Jazzy Joe", "correct": false}
-      ]
-    },
-    {
-      "question": "What is the name of the Simpson family's pet greyhound?",
-      "options": [
-        {"text": "Santa's Little Helper", "correct": true},
-        {"text": "Laddie", "correct": false},
-        {"text": "Ziggy", "correct": false},
-        {"text": "Fido", "correct": false}
-      ]
-    },
-    {
-      "question": "What is the name of the town where the Simpsons live?",
-      "options": [
-        {"text": "Springfield", "correct": true},
-        {"text": "Shelbyville", "correct": false},
-        {"text": "Capital City", "correct": false},
-        {"text": "Ogdenville", "correct": false}
-      ]
-    }
-  ]
+    "questions": [
+      {
+        "question": "What is the name of the Simpsons' next-door neighbor?",
+        "options": [
+          {"text": "Moe", "correct": false},
+          {"text": "Ned", "correct": true},
+          {"text": "Lenny", "correct": false},
+          {"text": "Carl", "correct": false}
+        ]
+      },
+      {
+        "question": "What is the name of Bart's best friend?",
+        "options": [
+          {"text": "Milhouse", "correct": true},
+          {"text": "Nelson", "correct": false},
+          {"text": "Martin", "correct": false},
+          {"text": "Ralph", "correct": false}
+        ]
+      },
+      {
+        "question": "What is the name of Homer's favorite bar?",
+        "options": [
+          {"text": "Moe's Tavern", "correct": true},
+          {"text": "The Rusty Nail", "correct": false},
+          {"text": "The Drunken Clam", "correct": false},
+          {"text": "The Alibi Room", "correct": false}
+        ]
+      },
+      {
+        "question": "What is the name of Lisa's jazz musician idol?",
+        "options": [
+          {"text": "Bleeding Gums Murphy", "correct": true},
+          {"text": "Cool Cat", "correct": false},
+          {"text": "Fingers Murphy", "correct": false},
+          {"text": "Jazzy Joe", "correct": false}
+        ]
+      },
+      {
+        "question": "What is the name of the Simpson family's pet greyhound?",
+        "options": [
+          {"text": "Santa's Little Helper", "correct": true},
+          {"text": "Laddie", "correct": false},
+          {"text": "Ziggy", "correct": false},
+          {"text": "Fido", "correct": false}
+        ]
+      },
+      {
+        "question": "What is the name of the town where the Simpsons live?",
+        "options": [
+          {"text": "Springfield", "correct": true},
+          {"text": "Shelbyville", "correct": false},
+          {"text": "Capital City", "correct": false},
+          {"text": "Ogdenville", "correct": false}
+        ]
+      }
+    ]
 }
 
 async function getQuizQuestions() {
@@ -81,29 +81,31 @@ async function getQuizQuestions() {
   // console.log(response.data)
 }
 
-
+  
 const quizResponse = await getQuizQuestions()
-
+  
 // Returns the next question. 
 // This will eventually just be an API call to our Node express server
 let questionCounter = 0
 let playerPoints = 0
 const numberOfQuestions = 5
 function getNextQuestion() {
-if (questionCounter <= numberOfQuestions) {
-  const nextQuestion = quizResponse.questions[questionCounter]
-  questionCounter++
-  return nextQuestion
-} else {
-  return false
-}
+  if (questionCounter <= numberOfQuestions) {
+    const nextQuestion = quizResponse.questions[questionCounter]
+    questionCounter++
+    return nextQuestion
+  } else {
+    return false
+  }
 }
 
 // Renders the quiz
 async function renderQuiz() {
-    playerPoints = 0
-    questionCounter = 0
-    renderNextQuestion()
+      const quizResponse = await getQuizQuestions()
+      playerPoints = 0
+      questionCounter = 0
+      console.log(quizResponse)
+      renderNextQuestion()
 }
 
 // Removes the current question from the DOM
@@ -163,7 +165,7 @@ function incorrectOptionHandler(event) {
   setTimeout(renderNextQuestion, 1000)
 }
 
-// renderQuiz()
+renderQuiz()
 
 
 
@@ -174,46 +176,43 @@ function incorrectOptionHandler(event) {
 
 // TODO - create a Quiz object - work in progress 
 class Quiz {
-constructor(questions) {
-  this.score = 0
-  this.questions = questions // Array of questions?
-  this.numberOfQuestions = questions.length
-  this.questionCounter = 0
-  this.pointsPerQuestion = 5
-}
-
-// Currently assumes multiple choice, hence uses an index. kahoot allows free entry. 
-submitAnswer(question, answerIndex) {
-  const points = this.gradeAnswer(question, answer)
-  this.score += points 
-  this.questionCounter ++
-  this.loadNextQuestion()
-}
-
-// Initially set points to 5 - kahoot adjusts based on time
-gradeAnswer(question, answerIndex) {
-  if (question.answerIndex['correct'] === true) {
-    return this.pointsPerQuestion 
-  } else {
-    return 0
+  constructor(questions) {
+    this.score = 0
+    this.questions = questions // Array of questions?
+    this.numberOfQuestions = questions.length
+    this.questionCounter = 0
+    this.pointsPerQuestion = 5
   }
-}
-loadNextQuestion() {
-  // TODO - use this to load next question
-}
+
+  // Currently assumes multiple choice, hence uses an index. kahoot allows free entry. 
+  submitAnswer(question, answerIndex) {
+    const points = this.gradeAnswer(question, answer)
+    this.score += points 
+    this.questionCounter ++
+    this.loadNextQuestion()
+  }
+
+  // Initially set points to 5 - kahoot adjusts based on time
+  gradeAnswer(question, answerIndex) {
+    if (question.answerIndex['correct'] === true) {
+      return this.pointsPerQuestion 
+    } else {
+      return 0
+    }
+  }
+  loadNextQuestion() {
+    // TODO - use this to load next question
+  }
 
 }
 
 // TODO - create a question object
 class Question {
-// TODO
+  // TODO
 }
 
 // TODO - make this a single page app?
 
 function getQuiz(quizString) {
-// Fetches the quizObject for a given quizString (e.g. High School History)
+  // Fetches the quizObject for a given quizString (e.g. High School History)
 }
-
-
-export default renderQuiz
