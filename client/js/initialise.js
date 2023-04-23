@@ -1,7 +1,9 @@
 import createQuiz from "./components/createQuiz.js";
+import renderLoadingPage from "./components/renderLoading.js";
 import renderQuiz from "./components/renderQuiz.js";
 
-createQuiz()
+renderLoadingPage()
+// createQuiz()
 // renderQuiz()
 
 // const initialise = async () => {
