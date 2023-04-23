@@ -72,13 +72,13 @@ const quizResponse2 = {
 }
 
 async function getQuizQuestions() {
-const difficulty = 'medium'
-const topic = 'English Literature'
-const context = ''
-const body = { difficulty, topic, context }
-const response = await axios.post('/api/quizzes/', body)
-return response.data
-// console.log(response.data)
+  const difficulty = 'medium'
+  const topic = 'English Literature'
+  const context = ''
+  const body = { difficulty, topic, context }
+  const response = await axios.post('/api/quizzes/', body)
+  return response.data
+  // console.log(response.data)
 }
 
 
@@ -101,71 +101,69 @@ if (questionCounter <= numberOfQuestions) {
 
 // Renders the quiz
 async function renderQuiz() {
-    const quizResponse = await getQuizQuestions()
     playerPoints = 0
     questionCounter = 0
-    console.log(quizResponse)
     renderNextQuestion()
 }
 
 // Removes the current question from the DOM
 function deleteCurrentQuestion() {
-const quizQuestion = document.querySelector('.quizQuestion')
-quizQuestion && quizQuestion.remove()
+  const quizQuestion = document.querySelector('.quizQuestion')
+  quizQuestion && quizQuestion.remove()
 }
 
 // Renders the next question 
 function renderNextQuestion() {
-deleteCurrentQuestion()
-const quizQuestion = getNextQuestion()
-console.log('in render next question..', quizQuestion)
+  deleteCurrentQuestion()
+  const quizQuestion = getNextQuestion()
+  console.log('in render next question..', quizQuestion)
 
-// If there's a quizQuestion, render it. If not, render the end of quiz message. 
-if (quizQuestion) {
-    const quizQuestionDiv = document.createElement('div')
-    quizQuestionDiv.classList.add('quizQuestion')
-    quizQuestionDiv.innerHTML = `<h3>${quizQuestion.question}</h3>`
-    for (let answerOption of quizQuestion.options) {
-        const quizAnswer = document.createElement('div')
-        quizAnswer.innerHTML = answerOption.option
-        quizAnswer.classList.add('quizButton')
-        if (answerOption.correct) {
-            quizAnswer.addEventListener('click', correctOptionHandler)
-        } else {
-            quizAnswer.addEventListener('click', incorrectOptionHandler)
-        }
-        quizQuestionDiv.appendChild(quizAnswer)
-    }
-    const quizDiv = document.querySelector('#quiz-div')
-    quizDiv.appendChild(quizQuestionDiv)
-    } else {
-    renderEndOfQuizPage()
-    }
-}
+  // If there's a quizQuestion, render it. If not, render the end of quiz message. 
+  if (quizQuestion) {
+      const quizQuestionDiv = document.createElement('div')
+      quizQuestionDiv.classList.add('quizQuestion')
+      quizQuestionDiv.innerHTML = `<h3>${quizQuestion.question}</h3>`
+      for (let answerOption of quizQuestion.options) {
+          const quizAnswer = document.createElement('div')
+          quizAnswer.innerHTML = answerOption.option
+          quizAnswer.classList.add('quizButton')
+          if (answerOption.correct) {
+              quizAnswer.addEventListener('click', correctOptionHandler)
+          } else {
+              quizAnswer.addEventListener('click', incorrectOptionHandler)
+          }
+          quizQuestionDiv.appendChild(quizAnswer)
+      }
+      const quizDiv = document.querySelector('#quiz-div')
+      quizDiv.appendChild(quizQuestionDiv)
+      } else {
+      renderEndOfQuizPage()
+      }
+  }
 
 // Renders the end of quiz page
 function renderEndOfQuizPage() {
-const quizQuestionDiv = document.createElement('div')
-quizQuestionDiv.innerHTML = `<h3>End of quiz!</h3>
-You got ${playerPoints} questions correct!`
-const quizDiv = document.querySelector('#quiz-div')
-quizDiv.appendChild(quizQuestionDiv)
+  const quizQuestionDiv = document.createElement('div')
+  quizQuestionDiv.innerHTML = `<h3>End of quiz!</h3>
+  You got ${playerPoints} questions correct!`
+  const quizDiv = document.querySelector('#quiz-div')
+  quizDiv.appendChild(quizQuestionDiv)
 } 
 
 // Handles a player getting the correct answer
 function correctOptionHandler(event) {
-playerPoints++
-event.target.classList.add('correctAnswer')
-setTimeout(renderNextQuestion, 1000)
+  playerPoints++
+  event.target.classList.add('correctAnswer')
+  setTimeout(renderNextQuestion, 1000)
 }
 
 // Handles a player getting the wrong answer
 function incorrectOptionHandler(event) {
-event.target.classList.add('incorrectAnswer')
-setTimeout(renderNextQuestion, 1000)
+  event.target.classList.add('incorrectAnswer')
+  setTimeout(renderNextQuestion, 1000)
 }
 
-renderQuiz()
+// renderQuiz()
 
 
 
@@ -216,3 +214,6 @@ class Question {
 function getQuiz(quizString) {
 // Fetches the quizObject for a given quizString (e.g. High School History)
 }
+
+
+export default renderQuiz
