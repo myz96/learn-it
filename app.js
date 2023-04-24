@@ -10,7 +10,7 @@ const quizzesController = require('./controllers/quizzes')
 const questionsController = require('./controllers/questions')
 const answersController = require('./controllers/answers')
 const usersController = require('./controllers/users')
-// const sessionController = require('./controllers/session')
+const sessionController = require('./controllers/session')
 
 const logger = require('./middleware/logger')
 const errorHandler = require('./middleware/error-handler')
@@ -41,7 +41,7 @@ app.use('/api/quizzes', quizzesController)
 app.use('/api/questions', questionsController)
 app.use('/api/answers', answersController)
 app.use('/api/users', usersController)
-// app.use('/api/session', sessionController)
+app.use('/api/session', sessionController)
 
 app.use(errorHandler)
 
