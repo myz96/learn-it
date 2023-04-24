@@ -1,9 +1,11 @@
+import browseQuizzes from "./components/browseQuizzes.js";
 import createQuiz from "./components/createQuiz.js";
 import renderLoadingPage from "./components/renderLoading.js";
 import renderProgressPage from "./components/renderProgress.js";
 import renderQuiz from "./components/renderQuiz.js";
 
-renderProgressPage()
+browseQuizzes()
+// renderProgressPage()
 // renderLoadingPage()
 // createQuiz()
 // renderQuiz()

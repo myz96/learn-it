@@ -1,7 +1,6 @@
 const express = require('express')
 const bcrypt = require('bcrypt')
-const db = require('../database/db')
-const creatUser = require('../models/user')
+const createUser = require('../models/user')
 const router = express.Router()
 
 const generateHash = (password) => bcrypt.hashSync(password, bcrypt.genSaltSync(10), null)
@@ -11,9 +10,6 @@ router.post('/', (req, res, next) => {
     o[k] = v.trim()
     return o
   }, {})
-
-
-//   let validationMessages = []
 
   if (!first_name) {
     const customError = new Error("Please enter your First Name")
@@ -37,16 +33,9 @@ router.post('/', (req, res, next) => {
     return next(customError) 
   }
 
-//   if (validationMessages.length) {
-//     return res.status(400).json({
-//       success: false,
-//       message: 'Signup form invalid',
-//       validationMessages
-//     })
-//   }
-
   const password_hash = generateHash(password)
 
-createUser(first_name, last_name, email, password_hash)
+  createUser(first_name, last_name, email, password_hash)
+})
 
 module.exports = router

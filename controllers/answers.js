@@ -1,11 +1,11 @@
 const express = require('express')
-const { getAllAnswers, getAnswerById, createAnswer, deleteAnswerById, updateAnswerById } = require('../models/answer')
+const { getAnswerById, createAnswer, deleteAnswerById, updateAnswerById, getAllAnswersByUserId } = require('../models/answer')
 
 const router = express.Router()
 
 router.get('/', async (req, res, next) => {
     try {
-        const result = await getAllAnswers(1) //Replace w. session id 
+        const result = await getAllAnswersByUserId(1) //Replace w. session id 
         return (result.length === 0) ? res.sendStatus(404) : res.status(200).json(result)
     } catch (error) {
         return next(error)

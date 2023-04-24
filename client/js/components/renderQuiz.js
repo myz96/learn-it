@@ -71,18 +71,20 @@ const quizResponse2 = {
   ]
 }
 
-async function getQuizQuestions() {
-  const difficulty = 'medium'
-  const topic = 'English Literature'
-  const context = ''
-  const body = { difficulty, topic, context }
-  const response = await axios.post('/api/quizzes/', body)
-  return response.data
-  // console.log(response.data)
-}
+// Something is causing the app to break here
+// -------------------------------------------------------
+// async function getQuizQuestions() {
+//   const difficulty = 'medium'
+//   const topic = 'English Literature'
+//   const context = ''
+//   const body = { difficulty, topic, context }
+//   const response = await axios.post('/api/quizzes/', body)
+//   return response.data
+//   // console.log(response.data)
+// }
 
-
-const quizResponse = await getQuizQuestions()
+// const quizResponse = await getQuizQuestions()
+// -------------------------------------------------------
 
 // Returns the next question. 
 // This will eventually just be an API call to our Node express server
@@ -92,7 +94,7 @@ const numberOfQuestions = 5
 function getNextQuestion() {
 
 if (questionCounter <= numberOfQuestions) {
-  const nextQuestion = quizResponse.questions[questionCounter]
+  const nextQuestion = quizResponse2.questions[questionCounter] // Replace with real quizResponse
   questionCounter++
   return nextQuestion
 } else {

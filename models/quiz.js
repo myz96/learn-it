@@ -5,6 +5,11 @@ const getAllQuizzes = async () => {
   return result.rows
 }
 
+const getAllQuizzesbyUserId = async (id) => {
+  const result = await db.query("SELECT id, quiz FROM quizzes WHERE user_id = $1;", [id])
+  return result.rows
+}
+
 const getQuizById = async (id) => {
   const result = await db.query(`SELECT * FROM quizzes WHERE id = $1;`, [id])
   return result.rows
@@ -48,6 +53,7 @@ const updateQuizById = async (id, user_id, quiz, title, prompt, difficulty, cont
 
 module.exports = {
   getAllQuizzes
+  , getAllQuizzesbyUserId
   , getQuizById
   , deleteQuizById
   , createQuiz
