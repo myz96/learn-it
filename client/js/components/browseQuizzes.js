@@ -17,7 +17,7 @@ const browseQuizzes = async () => {
         container.classList.add('card')
         container.style.width = '18rem'
         image.classList.add('card-img-top')
-        image.src = '#' // Replace with random image API
+        image.src = '/img/The_Simpsons_yellow_logo.svg.png' // Replace with random image API
         cardBody.classList.add('card-body')
         cardTitle.classList.add('card-title')
         cardSubtitle.classList.add('card-subtitle')   
