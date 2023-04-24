@@ -1,11 +1,11 @@
 const express = require('express')
-const { getAllQuizzes, getQuizById, createQuiz, deleteQuizById, updateQuizById } = require('../models/quiz')
+const { getQuizById, createQuiz, deleteQuizById, updateQuizById, getAllQuizzesbyUserId } = require('../models/quiz')
 
 const router = express.Router()
 
 router.get('/', async (req, res, next) => {
     try {
-        const result = await getAllQuizzes()
+        const result = await getAllQuizzesbyUserId(1) // Replace with user session
         return (result.length === 0) ? res.sendStatus(404) : res.status(200).json(result)
     } catch (error) {
         return next(error)

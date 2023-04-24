@@ -1,6 +1,11 @@
 const db = require("../database/db")
 
 const getAllAnswers = async (id) => {
+  const result = await db.query("SELECT * FROM answers;", [id])
+  return result.rows
+}
+
+const getAllAnswersByUserId = async (id) => {
   const result = await db.query("SELECT * FROM answers WHERE user_id = $1;", [id])
   return result.rows
 }
@@ -48,6 +53,7 @@ const updateAnswerById = async (id, user_id, quiz_id, question_id, user_answer, 
 
 module.exports = {
   getAllAnswers
+  , getAllAnswersByUserId
   , getAnswerById
   , deleteAnswerById
   , createAnswer

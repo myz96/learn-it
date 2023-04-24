@@ -1,5 +1,6 @@
 // Create user input page, that converts string into prompt below
 
+import renderLoadingPage from "./renderLoading.js"
 import renderQuiz from "./renderQuiz.js"
 
 // Mock Data to be replaced with chatGPT api response
@@ -28,6 +29,7 @@ const handleFormSubmit = async (e) => {
         const body = Object.fromEntries(new FormData(e.target))
         body.userId = 1 // Replace with user session
 
+        renderLoadingPage()
         const response = await axios.post('/api/quizzes', body)
         
         const main = document.querySelector('#quiz-div')
