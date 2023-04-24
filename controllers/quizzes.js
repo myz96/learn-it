@@ -1,5 +1,7 @@
 const express = require('express')
 const { getQuizById, createQuiz, deleteQuizById, updateQuizById, getAllQuizzesbyUserId } = require('../models/quiz')
+const { fetchQuizFromLLM } = require('../models/fetchQuiz')
+const { createQuestion, getAllQuestions } = require('../models/question')
 
 const router = express.Router()
 
@@ -24,24 +26,20 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try {
-        const { userId, title, topic, difficulty, context } = req.body
+        const { userId, title, topic } = req.body
 
-        if (!quiz) {
+        const difficulty = req.body.difficulty || 'medium'
+        const context = req.body.context || ''
+        const quizQuery = { topic, difficulty, context }
+
+        if (!quizQuery) {
             const customError = new Error("Quiz cannot be empty")
             customError.status = 400
             return next(customError)
         } 
 
-        const prompt = `
-        Please provide a quiz with 6 multiple choice questions of ${difficulty} difficulty on ${topic}. 
-        Please incorporate questions with ${context} context. 
-        Provide response as a JSON object.
-        Indicate which is the correct 
-        Answer with a boolean. 
-        Only provide a JSON object, don't provide anything else.  
-        `
-
-        const mockData = {
+        // // Mock data
+        const quiz = {
             "questions": [
                 {
                 "question": "What is the name of the Simpsons' next-door neighbor?",
@@ -100,10 +98,20 @@ router.post('/', async (req, res, next) => {
             ]
         }
 
-        const quiz = mockData // Replace with chatGPT API using prompt above
-    
-        const result = await createQuiz(userId, quiz, title, topic, difficulty, context)
-        return res.status(200).json(result[0])
+        // const quizResponse = await fetchQuizFromLLM(quizQuery)
+        // const quiz = JSON.parse(quizResponse)
+
+        // Store JSON quiz into quiz database
+        const quizResult = await createQuiz(userId, quiz, title, topic, difficulty, context)
+
+        // return res.send(quizResult)
+        const quizId = quizResult[0].id
+        // Now split into individual questions
+        for (let question of quiz.questions) {
+            const questionResult = await createQuestion(quizId, question.question, question.options)
+        }
+
+        return res.status(200).json(quizResult[0])
     } catch (error) {
         return next(error)
     }

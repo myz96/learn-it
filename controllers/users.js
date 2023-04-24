@@ -36,6 +36,7 @@ router.post('/', (req, res, next) => {
   const password_hash = generateHash(password)
 
   createUser(first_name, last_name, email, password_hash)
+
 })
 
 module.exports = router

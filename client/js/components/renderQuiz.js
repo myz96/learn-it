@@ -12,67 +12,92 @@
 // * Number of questions in quiz, number of answers 
 
 // Use this to minimise API calls to chatGPT ($$$)
-const quizResponse2 = {
-  "questions": [
-    {
-      "question": "What is the name of the Simpsons' next-door neighbor?",
-      "options": [
-        {"text": "Moe", "correct": false},
-        {"text": "Ned", "correct": true},
-        {"text": "Lenny", "correct": false},
-        {"text": "Carl", "correct": false}
-      ]
-    },
-    {
-      "question": "What is the name of Bart's best friend?",
-      "options": [
-        {"text": "Milhouse", "correct": true},
-        {"text": "Nelson", "correct": false},
-        {"text": "Martin", "correct": false},
-        {"text": "Ralph", "correct": false}
-      ]
-    },
-    {
-      "question": "What is the name of Homer's favorite bar?",
-      "options": [
-        {"text": "Moe's Tavern", "correct": true},
-        {"text": "The Rusty Nail", "correct": false},
-        {"text": "The Drunken Clam", "correct": false},
-        {"text": "The Alibi Room", "correct": false}
-      ]
-    },
-    {
-      "question": "What is the name of Lisa's jazz musician idol?",
-      "options": [
-        {"text": "Bleeding Gums Murphy", "correct": true},
-        {"text": "Cool Cat", "correct": false},
-        {"text": "Fingers Murphy", "correct": false},
-        {"text": "Jazzy Joe", "correct": false}
-      ]
-    },
-    {
-      "question": "What is the name of the Simpson family's pet greyhound?",
-      "options": [
-        {"text": "Santa's Little Helper", "correct": true},
-        {"text": "Laddie", "correct": false},
-        {"text": "Ziggy", "correct": false},
-        {"text": "Fido", "correct": false}
-      ]
-    },
-    {
-      "question": "What is the name of the town where the Simpsons live?",
-      "options": [
-        {"text": "Springfield", "correct": true},
-        {"text": "Shelbyville", "correct": false},
-        {"text": "Capital City", "correct": false},
-        {"text": "Ogdenville", "correct": false}
-      ]
+
+
+const renderQuiz = async (response) => {
+
+  const quizObject = JSON.parse(response.data.quiz)
+
+  // Returns the next question. 
+  // This will eventually just be an API call to our Node express server
+  let questionCounter = 0
+  let playerPoints = 0
+  const numberOfQuestions = 5
+
+  playerPoints = 0
+  questionCounter = 0
+  renderNextQuestion()
+
+  function getNextQuestion() {
+    if (questionCounter <= numberOfQuestions) {
+      const nextQuestion = quizObject.questions[questionCounter]
+      questionCounter++
+      return nextQuestion
+    } else {
+      return false
     }
-  ]
+  }
+
+
+  // Removes the current question from the DOM
+  function deleteCurrentQuestion() {
+    const quizQuestion = document.querySelector('.quizQuestion')
+    quizQuestion && quizQuestion.remove()
+  }
+
+  // Renders the next question 
+  function renderNextQuestion() {
+    deleteCurrentQuestion()
+    const quizQuestion = getNextQuestion()
+
+    // If there's a quizQuestion, render it. If not, render the end of quiz message. 
+    if (quizQuestion) {
+        const quizQuestionDiv = document.createElement('div')
+        quizQuestionDiv.classList.add('quizQuestion')
+        quizQuestionDiv.innerHTML = `<h3>${quizQuestion.question}</h3>`
+
+        for (let answerOption of quizQuestion.options) {
+            const quizAnswer = document.createElement('div')
+            quizAnswer.innerHTML = answerOption.option || answerOption.text
+            quizAnswer.classList.add('quizButton')
+            if (answerOption.correct) {
+                quizAnswer.addEventListener('click', correctOptionHandler)
+            } else {
+                quizAnswer.addEventListener('click', incorrectOptionHandler)
+            }
+            quizQuestionDiv.appendChild(quizAnswer)
+        }
+        const quizDiv = document.querySelector('#quiz-div')
+        quizDiv.appendChild(quizQuestionDiv)
+        } else {
+        renderEndOfQuizPage()
+        }
+    }
+
+  // Renders the end of quiz page
+  function renderEndOfQuizPage() {
+    const quizQuestionDiv = document.createElement('div')
+    quizQuestionDiv.innerHTML = `<h3>End of quiz!</h3>
+    You got ${playerPoints} questions correct!`
+    const quizDiv = document.querySelector('#quiz-div')
+    quizDiv.appendChild(quizQuestionDiv)
+  } 
+
+  // Handles a player getting the correct answer
+  function correctOptionHandler(event) {
+    playerPoints++
+    event.target.classList.add('correctAnswer')
+    setTimeout(renderNextQuestion, 1000)
+  }
+
+  // Handles a player getting the wrong answer
+  function incorrectOptionHandler(event) {
+    event.target.classList.add('incorrectAnswer')
+    setTimeout(renderNextQuestion, 1000)
+  }
 }
 
-// Something is causing the app to break here
-// -------------------------------------------------------
+
 // async function getQuizQuestions() {
 //   const difficulty = 'medium'
 //   const topic = 'English Literature'
@@ -84,87 +109,8 @@ const quizResponse2 = {
 // }
 
 // const quizResponse = await getQuizQuestions()
-// -------------------------------------------------------
 
-// Returns the next question. 
-// This will eventually just be an API call to our Node express server
-let questionCounter = 0
-let playerPoints = 0
-const numberOfQuestions = 5
-function getNextQuestion() {
 
-if (questionCounter <= numberOfQuestions) {
-  const nextQuestion = quizResponse2.questions[questionCounter] // Replace with real quizResponse
-  questionCounter++
-  return nextQuestion
-} else {
-  return false
-}
-}
-
-// Renders the quiz
-async function renderQuiz() {
-    playerPoints = 0
-    questionCounter = 0
-    renderNextQuestion()
-}
-
-// Removes the current question from the DOM
-function deleteCurrentQuestion() {
-  const quizQuestion = document.querySelector('.quizQuestion')
-  quizQuestion && quizQuestion.remove()
-}
-
-// Renders the next question 
-function renderNextQuestion() {
-  deleteCurrentQuestion()
-  const quizQuestion = getNextQuestion()
-
-  // If there's a quizQuestion, render it. If not, render the end of quiz message. 
-  if (quizQuestion) {
-      const quizQuestionDiv = document.createElement('div')
-      quizQuestionDiv.classList.add('quizQuestion')
-      quizQuestionDiv.innerHTML = `<h3>${quizQuestion.question}</h3>`
-
-      for (let answerOption of quizQuestion.options) {
-          const quizAnswer = document.createElement('div')
-          quizAnswer.innerHTML = answerOption.option
-          quizAnswer.classList.add('quizButton')
-          if (answerOption.correct) {
-              quizAnswer.addEventListener('click', correctOptionHandler)
-          } else {
-              quizAnswer.addEventListener('click', incorrectOptionHandler)
-          }
-          quizQuestionDiv.appendChild(quizAnswer)
-      }
-      const quizDiv = document.querySelector('#quiz-div')
-      quizDiv.appendChild(quizQuestionDiv)
-      } else {
-      renderEndOfQuizPage()
-      }
-  }
-
-// Renders the end of quiz page
-function renderEndOfQuizPage() {
-  const quizQuestionDiv = document.createElement('div')
-  quizQuestionDiv.innerHTML = `<h3>End of quiz!</h3>
-  You got ${playerPoints} questions correct!`
-  const quizDiv = document.querySelector('#quiz-div')
-  quizDiv.appendChild(quizQuestionDiv)
-} 
-
-// Handles a player getting the correct answer
-function correctOptionHandler(event) {
-  playerPoints++
-  event.target.classList.add('correctAnswer')
-  setTimeout(renderNextQuestion, 1000)
-}
-
-// Handles a player getting the wrong answer
-function incorrectOptionHandler(event) {
-  event.target.classList.add('incorrectAnswer')
-  setTimeout(renderNextQuestion, 1000)
-}
 
 // Everything below this line is a work in progress
 //
