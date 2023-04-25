@@ -11,10 +11,10 @@ const createQuiz = () => {
     main.innerHTML = `
     <form id="create-quiz">
         <h1>Create new quiz</h1>
-        <p><label for="title">Title</label><input type="text" name="title" id="title"></p>
-        <p><label for="topic">Topic</label><input type="text" name="topic" id="topic"></p>
-        <p><label for="difficulty">Difficulty</label><input type="text" name="difficulty" id="difficulty"></p>
-        <p><label for="context">Context</label><textarea type="text" name="context" id="context" rows="4" cols= "50" placeholder="Insert additional context here"></textarea></p>
+        <p><label for="title">Title </label><input type="text" name="title" id="title" placeholder="e.g. Tom's Chemistry Quiz" size="25"></p>
+        <p><label for="topic">Topic </label><input type="text" name="topic" id="topic" placeholder="e.g. High School Chemistry" size="25"></p>
+        <p><label for="difficulty">Difficulty </label><input type="text" name="difficulty" id="difficulty" placeholder="e.g. Medium" size="25"></p>
+        <p><label for="context">Context </label><textarea type="text" name="context" id="context" rows="4" cols= "50" placeholder="Insert any additional context here (optional)"></textarea></p>
         <button type="submit"> Create quiz </button>
     </form>
     `
