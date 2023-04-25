@@ -26,31 +26,18 @@ CREATE TABLE quizzes (
 
 CREATE TABLE questions (
   id SERIAL PRIMARY KEY,
-  quiz_id INT,
-  question TEXT,
-  choices TEXT,
-  CONSTRAINT fk_questions_quizzes
-    FOREIGN KEY (quiz_id)
-    REFERENCES quizzes(id)
-);
-
-CREATE TABLE answers (
-  id SERIAL PRIMARY KEY,
   user_id INT, 
   quiz_id INT,
-  question_id INT,
+  question TEXT,
   user_answer TEXT,
   correct_answer TEXT,
   correct INT,
-  CONSTRAINT fk_answers_users
+  CONSTRAINT fk_questions_users
     FOREIGN KEY (user_id)
     REFERENCES users(id),
-  CONSTRAINT fk_answers_quizzes
+  CONSTRAINT fk_questions_quizzes
     FOREIGN KEY (quiz_id)
-    REFERENCES quizzes(id),
-  CONSTRAINT fk_answers_questions
-    FOREIGN KEY (question_id)
-    REFERENCES questions(id)
+    REFERENCES quizzes(id)
 );
 
 

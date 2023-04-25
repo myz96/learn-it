@@ -33,7 +33,7 @@ const renderProgressPage = async () => {
     const percentCorrectElement = document.querySelector('.percent-correct')
     
     // Getting all answers
-    const response = await axios.get(`/api/answers/`)
+    const response = await axios.get(`/api/questions/`)
 
     // Calculating high score
     const groupedData = response.data.reduce((accumulator, answer) => {
@@ -59,11 +59,11 @@ const renderProgressPage = async () => {
         return accumulator + answer.correct
     }, 0)
     const numberQuestions = response.data.length
-    const percentCorrect = numberCorrect/numberQuestions
+    const percentCorrect = (numberCorrect/numberQuestions).toFixed(2) * 100
 
     // Displaying calculations
     highscoreElement.textContent = highscore
-    percentCorrectElement.textContent = percentCorrect
+    percentCorrectElement.textContent = `${percentCorrect}%`
 
     // Create table
     // For each answer in table, show the quiz title, question, user_answer, correct answer, and correct
@@ -94,8 +94,8 @@ const renderProgressPage = async () => {
         const correctAnswerCell = document.createElement('td') 
         const scoreCell = document.createElement('td') 
         
-        const { question_id:questionId, quiz_id:quizId, user_answer:userAnswer, correct_answer:correctAnswer, correct } = answer
-        
+        const { id:questionId, quiz_id:quizId, user_answer:userAnswer, correct_answer:correctAnswer, correct } = answer
+
         const quizResponse = await axios.get(`/api/quizzes/${quizId}`)
         const questionResponse = await axios.get(`/api/questions/${questionId}`)
 
