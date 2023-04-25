@@ -29,8 +29,6 @@ router.post('/', async (req, res, next) => {
             return res.status(200).json({ message: "Successfully Logged in!"})
         }
 
-
-
         const err = new Error("Invalid email address or password")
         err.status = 400
         throw err

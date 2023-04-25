@@ -35,7 +35,6 @@ const handleFormSubmit = async (e) => {
         const main = document.querySelector('#quiz-div')
         main.innerHTML = ``
         
-        console.log(response)
         return renderQuiz(response)
     } catch (error) {
         console.log(error)

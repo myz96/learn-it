@@ -8,7 +8,6 @@ const db = require('./database/db')
 // const llmRouter = require("./controllers/fetchQuizFromLLM")
 const quizzesController = require('./controllers/quizzes')
 const questionsController = require('./controllers/questions')
-const answersController = require('./controllers/answers')
 const usersController = require('./controllers/users')
 const sessionController = require('./controllers/session')
 
@@ -39,7 +38,6 @@ app.use(logger)
 
 app.use('/api/quizzes', quizzesController)
 app.use('/api/questions', questionsController)
-app.use('/api/answers', answersController)
 app.use('/api/users', usersController)
 app.use('/api/session', sessionController)
 

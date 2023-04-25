@@ -1,11 +1,12 @@
 const express = require('express')
-const { getAllQuestions, getQuestionById, deleteQuestionById, updateQuestionById } = require('../models/question')
+const { getAllQuestions, getQuestionById, deleteQuestionById, updateQuestionById, createQuestion } = require('../models/question')
+
 
 const router = express.Router()
 
 router.get('/', async (req, res, next) => {
     try {
-        const result = await getAllQuestions()
+        const result = await getAllQuestions(1) // Replace w. session ID
         return (result.length === 0) ? res.sendStatus(404) : res.status(200).json(result)
     } catch (error) {
         return next(error)
@@ -24,15 +25,15 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try {
-        const { quizId, question, choices } = req.body
+        const { userId, quizId, question, userAnswer, correctAnswer } = req.body
 
-        if (!quizId || !question || !choices) {
-            const customError = new Error("Quiz ID, question and choices cannot be empty")
+        if (!quizId || !question || !userAnswer) {
+            const customError = new Error("Quiz ID, question and answers cannot be empty")
             customError.status = 400
             return next(customError)
         } 
-    
-        const result = await createQuiz(quizId, question, choices)
+        
+        const result = await createQuestion(userId, quizId, question, userAnswer, correctAnswer)
         return res.status(200).json(result[0])
     } catch (error) {
         return next(error)
@@ -49,25 +50,6 @@ router.delete('/:id', async (req, res, next) => {
         const result = await deleteQuestionById(id)
 
         return res.status(200).json({ message: 'Question deleted successfully' })
-    } catch (error) {
-        return next(error)
-    }
-})
-
-router.put('/:id', async (req, res, next) => {
-    try {
-        const id = parseInt(req.params.id)
-        const { quizId, question, choices } = req.body
-
-        if (!quizId && !question && !choices) {
-            const customError = new Error("We require at least one value for Quiz ID, question or choices")
-            customError.status = 400
-            return next(customError)
-        }
-
-        const updatedQuestion = await updateQuestionById(id, quizId, question, choices)
-       
-        return res.status(200).json(updatedQuestion)  
     } catch (error) {
         return next(error)
     }

@@ -104,12 +104,13 @@ router.post('/', async (req, res, next) => {
         // Store JSON quiz into quiz database
         const quizResult = await createQuiz(userId, quiz, title, topic, difficulty, context)
 
-        // return res.send(quizResult)
-        const quizId = quizResult[0].id
+        // Redundant since we store this whenever a player answers, not when the quiz is created
+        // const quizId = quizResult[0].id
         // Now split into individual questions
-        for (let question of quiz.questions) {
-            const questionResult = await createQuestion(quizId, question.question, question.options)
-        }
+        // for (let question of quiz.questions) {
+        //     return res.send(question.question)
+        //     const questionResult = await createQuestion(quizId, question.question, question.options)
+        // }
 
         return res.status(200).json(quizResult[0])
     } catch (error) {
