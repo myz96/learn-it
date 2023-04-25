@@ -11,6 +11,7 @@ const questionsController = require('./controllers/questions')
 const answersController = require('./controllers/answers')
 const usersController = require('./controllers/users')
 const sessionController = require('./controllers/session')
+const shareController = require('./controllers/share')
 
 const logger = require('./middleware/logger')
 const errorHandler = require('./middleware/error-handler')
@@ -42,6 +43,7 @@ app.use('/api/questions', questionsController)
 app.use('/api/answers', answersController)
 app.use('/api/users', usersController)
 app.use('/api/session', sessionController)
+app.use('/share', shareController)
 
 app.use(errorHandler)
 
