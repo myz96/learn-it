@@ -4,10 +4,10 @@ import renderLoadingPage from "./components/renderLoading.js";
 import renderProgressPage from "./components/renderProgress.js";
 import renderQuiz from "./components/renderQuiz.js";
 
-// browseQuizzes()
+browseQuizzes()
 // renderProgressPage()
 // renderLoadingPage()
-createQuiz()
+// createQuiz()
 // renderQuiz()
 
 // const initialise = async () => {
