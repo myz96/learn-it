@@ -63,7 +63,9 @@ const browseQuizzes = async () => {
         deleteIcon.style.cursor = 'pointer'
         deleteIcon.onclick = () => deleteQuiz(quiz.id)
         image.classList.add('card-img-top')
-        image.src = '/img/The_Simpsons_yellow_logo.svg.png' // Replace with random image API
+        image.src = 'https://source.unsplash.com/collection/happy-people' // Replace with random image API
+        image.style.height = '200px'
+        image.style.objectFit = 'cover'
         cardBody.classList.add('card-body')
         cardTitle.classList.add('card-title')
         cardSubtitle.classList.add('card-subtitle')   

@@ -50,3 +50,17 @@ body {
   .close-share-url-div {
     text-decoration: underline;
   }
+
+  .btn-main {
+    background-color: #4a68fd;
+    border-color: #4a68fd;
+  }
+  
+  .btn-main:hover {
+    background-color: #294cff;
+    border-color: #294cff;
+  }
+
+#quiz-div {
+  padding: 20px;
+}

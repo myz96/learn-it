@@ -16,12 +16,17 @@ const getUserByEmail = async (email) => {
   return result.rows
 }
 
+const getUserById = async (id) => {
+  const result = await db.query("SELECT * FROM users WHERE id = $1;", [id])
+  return result.rows
+}
+
 const deleteUserById = async (id) => {
   const result = await db.query('DELETE FROM users WHERE id = $1', [id])
   return result.rowCount
 }
 
-const updateUserById = async (id, name, email, password_hash) => {
+const updateUserById = async (id, first_name, last_name, email, password_hash) => {
   let paramPosition = 2
   const valuesToUpdate = []
   const params = [id]
@@ -34,7 +39,8 @@ const updateUserById = async (id, name, email, password_hash) => {
     }
   }
 
-  addUpdate('name', name)
+  addUpdate('first_name', first_name)
+  addUpdate('last_name', last_name)
   addUpdate('email', email)
   addUpdate('password_hash', password_hash)
 
@@ -46,6 +52,7 @@ const updateUserById = async (id, name, email, password_hash) => {
 module.exports = {
   createUser,
   getUserByEmail,
+  getUserById,
   getAllUsers,
   updateUserById,
   deleteUserById
