@@ -13,7 +13,7 @@ async function loadSharedQuiz() {
     const quizObject = {}
     quizObject.data = {}
     quizObject.data.quiz = quizQuestions
-    //console.log(quizObject)
+    quizObject.data.id = quizId
 
     // Pass it to renderQuiz()
     return renderQuiz(quizObject)

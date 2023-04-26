@@ -15,6 +15,7 @@
 
 const renderQuiz = async (response) => {
   const quizObject = JSON.parse(response.data.quiz);
+  const quizId = JSON.parse(response.data.id)
 
   // Returns the next question.
   // This will eventually just be an API call to our Node express server
@@ -95,6 +96,37 @@ const renderQuiz = async (response) => {
     You got ${playerPoints} questions correct!`;
     const quizDiv = document.querySelector("#quiz-div");
     quizDiv.appendChild(quizQuestionDiv);
+
+    const shareIcon = document.createElement('a')
+    shareIcon.classList.add('btn')
+    shareIcon.classList.add('btn-secondary')
+    shareIcon.style.position = 'absolute'
+    shareIcon.style.padding = '20px'
+    shareIcon.style.margin = '20px'
+    shareIcon.innerText = 'Share Quiz'
+
+    quizDiv.append(shareIcon)
+    shareIcon.addEventListener('click', function(event) {
+        const shareUrlDiv = document.createElement('div')
+        shareUrlDiv.classList.add('share-url-div')
+        shareUrlDiv.style.position = 'absolute'
+        shareUrlDiv.style.left = '0px'
+        shareUrlDiv.style.padding = '20px'
+        shareUrlDiv.style.margin = '20px'
+        //const currentURL = document.URL.replace(/#/,"");
+        // console.log('docURL', document.URL)
+        // console.log('win loc', window.location)
+        const currentURL = `${window.location.origin}/`
+        shareUrlDiv.innerHTML = 
+        `To share with a friend, just send them this link: 
+        <a href="${currentURL}share?id=${quizId}">${currentURL}share?id=${quizId}</a>
+        <span class='close-share-url-div'>(Close)</span>`
+        quizDiv.append(shareUrlDiv)
+        const closeShareUrlBtn = document.querySelector('.close-share-url-div')
+        closeShareUrlBtn.addEventListener('click', function() {
+            shareUrlDiv.remove()
+        })
+    })
   }
 
   // Handles a player getting the correct answer

@@ -46,3 +46,7 @@ body {
     border-color:black;
     padding: 10px;
   }
+
+  .close-share-url-div {
+    text-decoration: underline;
+  }
