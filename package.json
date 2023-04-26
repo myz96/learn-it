@@ -22,5 +22,13 @@
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.22"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myz96/sei-project-3.git"
+  },
+  "bugs": {
+    "url": "https://github.com/myz96/sei-project-3/issues"
+  },
+  "homepage": "https://github.com/myz96/sei-project-3#readme"
 }

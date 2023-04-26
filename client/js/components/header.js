@@ -8,9 +8,9 @@ const renderHeader = (user) => {
     <h1>Scavenger Hunt</h1>
     <p>Logged in as ${user.name} <button class="logout-btn">Logout</button></p>
     <ul id="navlist">
-      <li role="button" data-render="quizList">Quizzes</li>
-      <li role="button" data-render="rules">Rules</li>
-      <li role="button" data-render="addQuiz">Add Quiz</li>
+      <li role="button" data-render="browseQuizzes">Browse Quizzes</li>
+      <li role="button" data-render="renderQuiz">Quiz</li>
+      <li role="button" data-render="createQuiz">Add Quiz</li>
     </ul>
   `
 
