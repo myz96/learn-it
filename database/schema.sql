@@ -34,10 +34,7 @@ CREATE TABLE questions (
   correct INT,
   CONSTRAINT fk_questions_users
     FOREIGN KEY (user_id)
-    REFERENCES users(id),
-  CONSTRAINT fk_questions_quizzes
-    FOREIGN KEY (quiz_id)
-    REFERENCES quizzes(id)
+    REFERENCES users(id)
 );
 
 
