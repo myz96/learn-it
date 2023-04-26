@@ -1,3 +1,5 @@
+import renderQuiz from "./renderQuiz.js"
+
 // Home page to browse all quizzes
 const browseQuizzes = async () => {
     const main = document.querySelector('#quiz-div')
@@ -91,6 +93,19 @@ const browseQuizzes = async () => {
         cardBody.append(cardParagraph)
         cardBody.append(button)
         cardBody.append(deleteIcon)
+
+        button.addEventListener('click', function(event) {
+            console.log(quizResponse)
+            // Put quiz data into same format that createQuiz passes to renderQuiz
+            const quizQuestions = quizResponse.data[0].quiz
+            const quizObject = {}
+            quizObject.data = {}
+            quizObject.data.quiz = quizQuestions
+            quizObject.data.id = quiz.id
+            const quizDiv = document.querySelector('#quiz-div')
+            quizDiv.innerHTML = ""
+            renderQuiz((quizObject))
+        })
     }
 
     main.style.display = 'grid'
