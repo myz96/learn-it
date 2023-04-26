@@ -20,6 +20,38 @@ const browseQuizzes = async () => {
         const cardParagraph = document.createElement('p')
         const button = document.createElement('a')
 
+        const shareIcon = document.createElement('a')
+        shareIcon.classList.add('btn')
+        shareIcon.classList.add('btn-secondary')
+        shareIcon.style.position = 'absolute'
+        shareIcon.style.bottom = '20px'
+        shareIcon.style.right = '10px'
+        shareIcon.innerText = 'Share Quiz'
+        cardBody.append(shareIcon)
+        shareIcon.addEventListener('click', function(event) {
+            const shareUrlDiv = document.createElement('div')
+            shareUrlDiv.classList.add('share-url-div')
+            shareUrlDiv.style.position = 'absolute'
+            shareUrlDiv.style.bottom = '0px'
+            shareUrlDiv.style.left = '0px'
+            shareUrlDiv.style.width = '100%'
+            //const currentURL = document.URL.replace(/#/,"");
+            const currentURL = `${window.location.origin}/`
+            shareUrlDiv.innerHTML = 
+            `To share with a friend, just send them this link: 
+            <a href="${currentURL}share?id=${quiz.id}">${currentURL}share?id=${quiz.id}</a>
+            <span class='close-share-url-div'>(Close)</span>`
+            container.style.paddingBottom = '110px'
+            shareIcon.style.bottom = '130px'
+            cardBody.append(shareUrlDiv)
+            const closeShareUrlBtn = document.querySelector('.close-share-url-div')
+            closeShareUrlBtn.addEventListener('click', function() {
+                shareUrlDiv.remove()
+                container.style.paddingBottom = '0px'
+                shareIcon.style.bottom = '20px'
+            })
+        })
+
         container.classList.add('card')
         container.style.width = '18rem'
         container.style.position = 'relative'

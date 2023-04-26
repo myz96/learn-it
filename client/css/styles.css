@@ -30,6 +30,26 @@ body {
     background-color: #FFA533;
     border-color: #FFA533;
   }
+  
+  .btn-secondary {
+    background-color: cornflowerblue;
+    border-color: cornflowerblue;
+  }
+  
+  .btn-secondary:hover {
+    background-color: rgb(33, 102, 229);
+    border-color: rgb(33, 102, 229);
+  }
+
+  .share-url-div {
+    background-color: white;
+    border-color:black;
+    padding: 10px;
+  }
+
+  .close-share-url-div {
+    text-decoration: underline;
+  }
 
   .btn-main {
     background-color: #4a68fd;
