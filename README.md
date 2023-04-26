@@ -26,10 +26,10 @@ Learn It is a web application that leverages the power of OpenAI's ChatGPT API t
 The application follows a client-server architecture, with the frontend and backend communicating through API endpoints. The backend server is built using Express.js and connects to a Postgres database for storing and retrieving quizzes. The frontend is built as a SPA using JavaScript, with Bootstrap CSS for styling. The OpenAI ChatGPT API is integrated into the backend server to generate quizzes based on user input topics.
 
 Below is the image of the basic architecture of the app including front-end, back-end and integration with OpenAI chatGPT API:
-![Diagram showing the app architecture](Architecture diagram.PNG) 
+![Diagram showing the app architecture](architecture-diagram.png) 
 
 Below is a diagram showing the db schema: 
-![Diagram showing the database structure](DB diagram.PNG) 
+![Diagram showing the database structure](db-diagram.png) 
 
 ## Future features
 1. Personalized Quizzes: Utilizing user feedback on questions they got wrong to influence the generation of future quizzes, such as asking questions focused on areas that the user has struggled with, providing a more personalized learning experience.
