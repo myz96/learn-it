@@ -1,7 +1,7 @@
 // Home page to browse all quizzes
 const browseQuizzes = async () => {
     const main = document.querySelector('#quiz-div')
-    
+
     const response = await axios.get('/api/quizzes')
     main.innerHTML = `
     `
@@ -68,8 +68,8 @@ const browseQuizzes = async () => {
         image.style.objectFit = 'cover'
         cardBody.classList.add('card-body')
         cardTitle.classList.add('card-title')
-        cardSubtitle.classList.add('card-subtitle')   
-        cardSubtitle.classList.add('mb-2')   
+        cardSubtitle.classList.add('card-subtitle')
+        cardSubtitle.classList.add('mb-2')
         cardSubtitle.classList.add('text-muted')
         cardParagraph.classList.add('card-text')
         button.href = '#' // Replace with link to Quiz
@@ -94,6 +94,8 @@ const browseQuizzes = async () => {
     }
 
     main.style.display = 'grid'
+    main.style.gridTemplateColumns = 'repeat(auto-fit, minmax(300px, 1fr))'
+    main.style.gridGap = '20px'
 }
 
 export default browseQuizzes
