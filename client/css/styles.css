@@ -30,3 +30,17 @@ body {
     background-color: #FFA533;
     border-color: #FFA533;
   }
+
+  .btn-main {
+    background-color: #4a68fd;
+    border-color: #4a68fd;
+  }
+  
+  .btn-main:hover {
+    background-color: #294cff;
+    border-color: #294cff;
+  }
+
+#quiz-div {
+  padding: 20px;
+}
