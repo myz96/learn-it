@@ -30,3 +30,13 @@ body {
     background-color: #FFA533;
     border-color: #FFA533;
   }
+  
+  .btn-secondary {
+    background-color: cornflowerblue;
+    border-color: cornflowerblue;
+  }
+  
+  .btn-secondary:hover {
+    background-color: rgb(33, 102, 229);
+    border-color: rgb(33, 102, 229);
+  }

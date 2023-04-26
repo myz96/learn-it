@@ -20,6 +20,16 @@ const browseQuizzes = async () => {
         const cardParagraph = document.createElement('p')
         const button = document.createElement('a')
 
+        const shareIcon = document.createElement('a')
+        shareIcon.classList.add('btn')
+        shareIcon.classList.add('btn-secondary')
+        shareIcon.style.position = 'absolute'
+        shareIcon.style.bottom = '20px'
+        shareIcon.style.right = '10px'
+        shareIcon.innerText = 'Share Quiz'
+        shareIcon.href = '#' // Replace with link to Quiz
+        cardBody.append(shareIcon)
+
         container.classList.add('card')
         container.style.width = '18rem'
         container.style.position = 'relative'
