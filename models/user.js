@@ -16,6 +16,11 @@ const getUserByEmail = async (email) => {
   return result.rows
 }
 
+const getUserById = async (id) => {
+  const result = await db.query("SELECT * FROM users WHERE id = $1;", [id])
+  return result.rows
+}
+
 const deleteUserById = async (id) => {
   const result = await db.query('DELETE FROM users WHERE id = $1', [id])
   return result.rowCount
@@ -47,6 +52,7 @@ const updateUserById = async (id, first_name, last_name, email, password_hash) =
 module.exports = {
   createUser,
   getUserByEmail,
+  getUserById,
   getAllUsers,
   updateUserById,
   deleteUserById
