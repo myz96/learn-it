@@ -43,7 +43,7 @@ const browseQuizzes = async () => {
         button.classList.add('btn-primary')
 
         const quizResponse = await axios.get(`/api/quizzes/${quiz.id}`)
-        console.log(quizResponse)
+        // console.log(quizResponse)
         cardTitle.textContent = quizResponse.data[0].title
         cardSubtitle.textContent = quizResponse.data[0].difficulty
         cardParagraph.textContent = quizResponse.data[0].topic

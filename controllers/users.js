@@ -1,6 +1,7 @@
 const express = require('express')
 const bcrypt = require('bcrypt')
-const { createUser } = require('../models/user')
+const { createUser, getAllUsers, getUserByEmail } = require('../models/user')
+
 const router = express.Router()
 
 const generateHash = (password) => bcrypt.hashSync(password, bcrypt.genSaltSync(10), null)
@@ -44,5 +45,25 @@ router.post('/', async (req, res, next) => {
         return next(error)
     }
 })
+
+router.get('/', async (req, res, next) => {
+    try {
+        const users = await getAllUsers()
+        return res.json(users)
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.get('/:email', async (req, res, next) => {
+    try {
+        const email = req.params.email
+        const user = await getUserByEmail(email)
+        return res.status(201).json(user)
+    } catch (error) {
+        next(error)
+    }
+})
+
 
 module.exports = router

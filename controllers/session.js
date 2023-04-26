@@ -35,7 +35,23 @@ router.post('/', async (req, res, next) => {
     } catch (error) {
         return next(error)
     }
+})
 
+router.get('/', async (req, res, next) => {
+    try {
+        const { user } = req.session
+        if (!user)
+            return res.status(401).json({ message: "Not logged in" })
+        return res.json({ user })
+    } catch (error) {
+        return next(error)
+    }
+})
+
+router.delete('/', (req, res, next) => {
+    req.session.destroy(() => {
+        res.json({ message: "Logged out" })
+    })
 })
 
 module.exports = router

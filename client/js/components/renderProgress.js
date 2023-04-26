@@ -5,6 +5,7 @@
 
 const renderProgressPage = async () => {
     const main = document.querySelector('#quiz-div')
+    main.innerHTML = ``
 
     // Creating elements
     const scoreContainer = document.createElement('div')
