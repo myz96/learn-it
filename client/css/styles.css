@@ -40,3 +40,9 @@ body {
     background-color: rgb(33, 102, 229);
     border-color: rgb(33, 102, 229);
   }
+
+  .share-url-div {
+    background-color: white;
+    border-color:black;
+    padding: 10px;
+  }

@@ -29,6 +29,21 @@ const browseQuizzes = async () => {
         shareIcon.innerText = 'Share Quiz'
         shareIcon.href = '#' // Replace with link to Quiz
         cardBody.append(shareIcon)
+        cardBody.addEventListener('click', function(event) {
+            const shareUrlDiv = document.createElement('div')
+            shareUrlDiv.classList.add('share-url-div')
+            shareUrlDiv.style.position = 'absolute'
+            shareUrlDiv.style.bottom = '0px'
+            shareUrlDiv.style.left = '0px'
+            shareUrlDiv.style.width = '100%'
+            const currentURL = document.URL.replace(/#/,"");
+            shareUrlDiv.innerHTML = `To share with a friend, just send them this link: <a href="${currentURL}share?id=${quiz.id}">${currentURL}share?id=${quiz.id}</a>`
+            container.style.paddingBottom = '90px'
+            shareIcon.style.bottom = '110px'
+            cardBody.append(shareUrlDiv)
+        })
+
+   
 
         container.classList.add('card')
         container.style.width = '18rem'
