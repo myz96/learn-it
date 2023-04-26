@@ -21,7 +21,7 @@ const deleteUserById = async (id) => {
   return result.rowCount
 }
 
-const updateUserById = async (id, name, email, password_hash) => {
+const updateUserById = async (id, first_name, last_name, email, password_hash) => {
   let paramPosition = 2
   const valuesToUpdate = []
   const params = [id]
@@ -34,7 +34,8 @@ const updateUserById = async (id, name, email, password_hash) => {
     }
   }
 
-  addUpdate('name', name)
+  addUpdate('first_name', first_name)
+  addUpdate('last_name', last_name)
   addUpdate('email', email)
   addUpdate('password_hash', password_hash)
 
