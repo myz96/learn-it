@@ -5,7 +5,8 @@ const router = express.Router()
 
 router.get('/', async (req, res, next) => {
     try {
-        const result = await getAllQuizzesbyUserId(1) // Replace with user session
+        const id = req.session.user.id
+        const result = await getAllQuizzesbyUserId(id) // Replace with user session
         return (result.length === 0) ? res.sendStatus(404) : res.status(200).json(result)
     } catch (error) {
         return next(error)
@@ -24,7 +25,9 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try {
-        const { userId, title, topic } = req.body
+        const { title, topic } = req.body
+        const userId = req.session.user.id
+        console.log(userId)
 
         const difficulty = req.body.difficulty || 'medium'
         const context = req.body.context || ''
