@@ -1,4 +1,4 @@
-# Quiz Generator
+# Learn It 
 Project 3 submission for the General Assembly Software Engineering Immersive.
 
 Team members: 
@@ -8,7 +8,7 @@ Team members:
 * Shiam Dulla
 
 ## Introduction
-Quiz Generator is a web application that leverages the power of OpenAI's ChatGPT API to automatically generate interactive quizzes on any topic supplied by the user. The application provides a seamless experience for users to create, save, browse, and delete quizzes, as well as share them with friends.
+Learn It is a web application that leverages the power of OpenAI's ChatGPT API to automatically generate interactive quizzes on any topic supplied by the user. The application provides a seamless experience for users to create, save, browse, and delete quizzes, as well as share them with friends.
 
 ## List of features
 1. Quiz Generation: Users can input a topic of their choice, and the application uses the OpenAI ChatGPT API to automatically generate a     custom quiz with multiple-choice questions.
@@ -26,10 +26,10 @@ Quiz Generator is a web application that leverages the power of OpenAI's ChatGPT
 The application follows a client-server architecture, with the frontend and backend communicating through API endpoints. The backend server is built using Express.js and connects to a Postgres database for storing and retrieving quizzes. The frontend is built as a SPA using JavaScript, with Bootstrap CSS for styling. The OpenAI ChatGPT API is integrated into the backend server to generate quizzes based on user input topics.
 
 Below is the image of the basic architecture of the app including front-end, back-end and integration with OpenAI chatGPT API:
-![Diagram showing the app architecture]('Architecture diagram.PNG') 
+![Diagram showing the app architecture](architecture-diagram.png) 
 
 Below is a diagram showing the db schema: 
-![Diagram showing the database structure]('DB diagram.PNG') 
+![Diagram showing the database structure](db-diagram.png) 
 
 ## Future features
 1. Personalized Quizzes: Utilizing user feedback on questions they got wrong to influence the generation of future quizzes, such as asking questions focused on areas that the user has struggled with, providing a more personalized learning experience.
