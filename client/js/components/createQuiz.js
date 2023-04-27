@@ -28,7 +28,7 @@ const createQuiz = () => {
         <label for="context">Context</label>
         <textarea class="form-control" name="context" id="context" rows="3" placeholder="Insert any additional context here (optional)"></textarea>
       </div>
-      <button type="submit" class="btn btn-primary btn-block">Create quiz</button>
+      <button type="submit" class="btn btn-primary btn-block custom-btn">Create quiz</button>
     </form>
     `
 

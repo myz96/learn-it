@@ -29,7 +29,7 @@ const renderEditUser = async (user) => {
             <label for="confirm-password">Confirm Password:</label>
             <input type="password" class="form-control" name="confirm-password" id="confirm-password" placeholder="Confirm password" required>
           </div>
-          <button type="submit" class="btn btn-primary btn-block">Edit User Details</button>
+          <button type="submit" class="btn btn-primary btn-block custom-btn">Edit User Details</button>
         </form>
       `;
       document.querySelector('#edit-form').addEventListener('submit', handleEditFormSubmit);
