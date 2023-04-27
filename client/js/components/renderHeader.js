@@ -41,13 +41,17 @@ const renderHeader = (user) => {
         <!-- menus -->
         <div class="col d-flex align-items-center justify-content-end">
           <!-- avatar -->
-          <div class="align-items-center justify-content-center d-none d-xl-flex" data-render="profile">
+          <div class="align-items-center justify-content-center nav__btn d-none d-xl-flex" data-render="profile">
+          <button type="button" class="btn px-4" style="display: flex; align-items: center;">
             <img src="https://source.unsplash.com/collection/nature" class="rounded-circle me-2" alt="avatar" style="width: 30px; height: 30px; object-fit: cover" data-render="profile"/>
-            <p class="m-0" style="padding: 0 5px 0 10px;" data-render="profile"> ${user.first_name}</p>
-          </div>
+            <p class="m-0 text-white" style="padding: 0 5px 0 10px;" data-render="profile">${user.first_name}</p>
+          </button>
+        </div>
           <!-- notifications -->
-          <div class="rounded-circle p-1 bg-gray d-flex align-items-center justify-content-center mx-2 logout-btn" style="width: 38px; height: 38px" type="button" data-render="logout">
+          <div>
+          <button class="rounded-circle p-1 bg-gray d-flex align-items-center justify-content-center mx-2 logout-btn" style="width: 38px; height: 38px" type="button" data-render="logout">
             <i class="fas fa-arrow-right" data-render="logout"></i>
+          </button>
           </div>
         </div>
       </div>

@@ -1,82 +1,102 @@
 .quizButton {
-  background-color: aquamarine;
-  padding: 10px;
-  margin: 10px;
-  width: 200px;
+    background-color: aquamarine;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
 }
 
 .correctAnswer {
-  background-color: green;
+    background-color: green;
 }
 
 .incorrectAnswer {
-  background-color: red;
+    background-color: red;
 }
 
 body {
-  background-color: #ffffff;
+    background-color: #ffffff;
 }
-  
+
 .card {
-  background-color: #ffffff;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .btn-primary {
-  background-color: #FFB347;
-  border-color: #FFB347;
+    background-color: #FFB347;
+    border-color: #FFB347;
 }
 
 .btn-primary:hover {
-  background-color: #FFA533;
-  border-color: #FFA533;
+    background-color: #FFA533;
+    border-color: #FFA533;
 }
 
 .btn-secondary {
-  background-color: cornflowerblue;
-  border-color: cornflowerblue;
+    background-color: cornflowerblue;
+    border-color: cornflowerblue;
 }
 
 .btn-secondary:hover {
-  background-color: rgb(33, 102, 229);
-  border-color: rgb(33, 102, 229);
+    background-color: rgb(33, 102, 229);
+    border-color: rgb(33, 102, 229);
 }
 
 .share-url-div {
-  background-color: white;
-  border-color:black;
-  padding: 10px;
+    background-color: white;
+    border-color: black;
+    padding: 10px;
 }
 
 .close-share-url-div {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .btn-main {
-  background-color: #4a68fd;
-  border-color: #4a68fd;
+    background-color: #4a68fd;
+    border-color: #4a68fd;
 }
 
 .btn-main:hover {
-  background-color: #294cff;
-  border-color: #294cff;
+    background-color: #294cff;
+    border-color: #294cff;
 }
 
 #quiz-div {
-  padding: 76px 20px 20px 20px;
+    padding: 76px 20px 20px 20px;
 }
 
 #loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
 }
 
 #loading-text {
-  font-size: 36px;
-  font-weight: bold;
-  text-align: center;
-  opacity: 0;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    opacity: 0;
 }
+
+.nav__btn button {
+    transition: background-color 0.2s ease-in-out;
+}
+
+.nav__btn button:hover {
+    background-color: #afb4b4dd;
+}
+
+.logout-btn {
+    background-color: white;
+    border: 1px solid white;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  .logout-btn:hover {
+    background-color: #afb4b4dd;
+    border: 1px solid #afb4b4dd;
+  }
+  
