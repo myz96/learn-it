@@ -16,7 +16,7 @@
 const renderQuiz = async (response) => {
   const quizObject = JSON.parse(response.data.quiz);
   const quizId = JSON.parse(response.data.id)
-
+  console.log(quizObject)
   // Returns the next question.
   // This will eventually just be an API call to our Node express server
   let questionCounter = 0;
@@ -54,7 +54,7 @@ const renderQuiz = async (response) => {
 
       for (let answerOption of quizQuestion.options) {
         const quizAnswer = document.createElement("div");
-        quizAnswer.innerHTML = answerOption.option || answerOption.text;
+        quizAnswer.innerHTML = answerOption.text;
         quizAnswer.classList.add("quizButton");
         quizAnswer.dataset.question = quizQuestion.question
         quizAnswer.dataset.quizId = response.data.id

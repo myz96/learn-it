@@ -25,7 +25,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try {
-        const { userId, quizId, question, userAnswer, correctAnswer } = req.body
+        const { userId, quizId, question, userAnswer, correct } = req.body
 
         if (!quizId || !question || !userAnswer) {
             const customError = new Error("Quiz ID, question and answers cannot be empty")
@@ -33,7 +33,7 @@ router.post('/', async (req, res, next) => {
             return next(customError)
         } 
         
-        const result = await createQuestion(userId, quizId, question, userAnswer, correctAnswer)
+        const result = await createQuestion(userId, quizId, question, userAnswer, correct)
         return res.status(200).json(result[0])
     } catch (error) {
         return next(error)
