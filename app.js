@@ -5,7 +5,6 @@ const session = require('express-session')
 
 const db = require('./database/db')
 
-// const llmRouter = require("./controllers/fetchQuizFromLLM")
 const quizzesController = require('./controllers/quizzes')
 const questionsController = require('./controllers/questions')
 const usersController = require('./controllers/users')
@@ -34,7 +33,6 @@ app.use(session({
   })
 }))
 
-// app.use(llmRouter)
 app.use(logger)
 
 app.use('/api/quizzes', quizzesController)

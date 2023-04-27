@@ -50,14 +50,8 @@ async function fetchQuizFromLLM(quizQuery) {
 
     const requestBody = {
         "model": "gpt-3.5-turbo",
-        "messages": [{ role: "user", content: promptText}] // promptText}]
+        "messages": [{ role: "user", content: promptText}] 
       };
-    
-    // const requestHeaders = {
-    //     'Content-Type': 'application/json',
-    //     'Authorization': "Bearer " + process.env.API_KEY //,
-    //   };
-    // const response = await axios.post(apiUrl, requestBody, requestHeaders)
 
     const response = await fetch(apiUrl, {
         method: "POST",
@@ -75,12 +69,8 @@ async function fetchQuizFromLLM(quizQuery) {
         return quizResponse
     }
     return false
-    // console.log('validate Json returned: ', validateJson(JSON.parse(quizResponse), quizSchema))
-    // console.log(quizResponse)
-    // return quizResponse
-}
 
-//console.log('res data: ', response)
+}
 
 module.exports = { fetchQuizFromLLM }
 

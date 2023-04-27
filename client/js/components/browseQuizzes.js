@@ -65,7 +65,6 @@ const browseQuizzes = async () => {
         deleteIcon.style.cursor = 'pointer'
         deleteIcon.onclick = () => deleteQuiz(quiz.id)
         image.classList.add('card-img-top')
-        image.src = 'https://source.unsplash.com/collection/happy-people' // Replace with random image API
         image.style.height = '200px'
         image.style.objectFit = 'cover'
         cardBody.classList.add('card-body')
@@ -79,10 +78,10 @@ const browseQuizzes = async () => {
         button.classList.add('btn-primary')
 
         const quizResponse = await axios.get(`/api/quizzes/${quiz.id}`)
-        // console.log(quizResponse)
         cardTitle.textContent = quizResponse.data[0].title
         cardSubtitle.textContent = quizResponse.data[0].difficulty
         cardParagraph.textContent = quizResponse.data[0].topic
+        image.src = quizResponse.data[0].image_url
         button.textContent = 'Take Quiz'
 
         main.append(container)
@@ -95,7 +94,6 @@ const browseQuizzes = async () => {
         cardBody.append(deleteIcon)
 
         button.addEventListener('click', function(event) {
-            console.log(quizResponse)
             // Put quiz data into same format that createQuiz passes to renderQuiz
             const quizQuestions = quizResponse.data[0].quiz
             const quizObject = {}
@@ -111,6 +109,7 @@ const browseQuizzes = async () => {
     main.style.display = 'grid'
     main.style.gridTemplateColumns = 'repeat(auto-fit, minmax(300px, 1fr))'
     main.style.gridGap = '20px'
+    main.style.justifyItems = 'center'
 }
 
 export default browseQuizzes

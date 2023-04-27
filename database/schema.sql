@@ -19,6 +19,7 @@ CREATE TABLE quizzes (
   topic TEXT,
   difficulty TEXT,
   context TEXT,
+  image_url TEXT,
   CONSTRAINT fk_quizzes_users
     FOREIGN KEY (user_id)
     REFERENCES users(id)

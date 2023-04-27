@@ -84,7 +84,7 @@ const renderQuiz = async (response) => {
         quizId: quizId,
         question: question,
         userAnswer: answer.text,
-        correctAnswer: answer.correct
+        correct: answer.correct
       }
       const response = await axios.post('/api/questions', body)
     }
@@ -93,19 +93,18 @@ const renderQuiz = async (response) => {
   function renderEndOfQuizPage() {
     const quizQuestionDiv = document.createElement("div");
     quizQuestionDiv.innerHTML = `<h3>End of quiz!</h3>
-    You got ${playerPoints} questions correct!`;
+    <p>You got ${playerPoints} questions correct!</p>`;
     const quizDiv = document.querySelector("#quiz-div");
     quizDiv.appendChild(quizQuestionDiv);
 
     const shareIcon = document.createElement('a')
     shareIcon.classList.add('btn')
     shareIcon.classList.add('btn-secondary')
-    shareIcon.style.position = 'absolute'
     shareIcon.style.padding = '20px'
     shareIcon.style.margin = '20px'
     shareIcon.innerText = 'Share Quiz'
 
-    quizDiv.append(shareIcon)
+    quizQuestionDiv.append(shareIcon)
     shareIcon.addEventListener('click', function(event) {
         const shareUrlDiv = document.createElement('div')
         shareUrlDiv.classList.add('share-url-div')
