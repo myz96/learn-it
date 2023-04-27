@@ -20,10 +20,10 @@ async function fetchQuizFromLLM(quizQuery) {
                     items: {
                         type: "object",
                         properties: {
-                            answer: {type: "string"},
+                            text: {type: "string"},
                             correct: {type: "boolean"}
                         },
-                        required: ["answer", "correct"],
+                        required: ["text", "correct"],
                         additionalProperties: false 
                     }
                 }
