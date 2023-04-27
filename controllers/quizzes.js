@@ -1,7 +1,5 @@
 const express = require('express')
 const { getQuizById, createQuiz, deleteQuizById, updateQuizById, getAllQuizzesbyUserId } = require('../models/quiz')
-const { fetchQuizFromLLM } = require('../models/fetchQuiz')
-const { fetchImage } = require('../models/fetchImage')
 
 const router = express.Router()
 
@@ -122,7 +120,7 @@ router.delete('/:id', async (req, res, next) => {
         if (isNaN(id)) 
             return res.status(400).json({ message: 'Invalid quiz ID' })
 
-        const result = await deleteQuizById(id)
+            const deleteQuiz = await deleteQuizById(id)
 
         return res.status(200).json({ message: 'Quiz deleted successfully' })
     } catch (error) {

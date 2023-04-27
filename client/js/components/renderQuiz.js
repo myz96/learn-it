@@ -16,7 +16,7 @@
 const renderQuiz = async (response) => {
   const quizObject = JSON.parse(response.data.quiz);
   const quizId = JSON.parse(response.data.id)
-  console.log(quizObject)
+
   // Returns the next question.
   // This will eventually just be an API call to our Node express server
   let questionCounter = 0;
@@ -37,7 +37,7 @@ const renderQuiz = async (response) => {
 
   // Removes the current question from the DOM
   function deleteCurrentQuestion() {
-    const quizQuestion = document.querySelector(".quizQuestion");
+    const quizQuestion = document.querySelector(".quiz-container");
     quizQuestion && quizQuestion.remove();
   }
 
@@ -48,27 +48,48 @@ const renderQuiz = async (response) => {
 
     // If there's a quizQuestion, render it. If not, render the end of quiz message.
     if (quizQuestion) {
-      const quizQuestionDiv = document.createElement("div");
-      quizQuestionDiv.classList.add("quizQuestion");
-      quizQuestionDiv.innerHTML = `<h3>${quizQuestion.question}</h3>`;
+      const quizContainer = document.createElement('div')
+      const quizTitle = document.createElement('h3')
+      const quizImage = document.createElement('img')
+      const quizButtons = document.createElement('div')
 
+      quizContainer.classList.add('quiz-container')
+      quizTitle.classList.add('quiz-title')
+      quizImage.classList.add('quiz-img')
+      quizButtons.classList.add("quiz-buttons")
+
+      quizTitle.textContent = `${quizQuestion.question}`
+      quizImage.src = 'https://source.unsplash.com/collection/happy-people'
+
+      let buttonCounter = 1
       for (let answerOption of quizQuestion.options) {
-        const quizAnswer = document.createElement("div");
-        quizAnswer.innerHTML = answerOption.text;
-        quizAnswer.classList.add("quizButton");
-        quizAnswer.dataset.question = quizQuestion.question
-        quizAnswer.dataset.quizId = response.data.id
-        quizAnswer.dataset.answer = JSON.stringify(answerOption)
+        const quizButton = document.createElement("div");
+
+        quizButton.classList.add("quiz-button");
+        quizButton.classList.add(`button${buttonCounter}`)
+
+        quizButton.innerHTML = answerOption.text;
+
+        quizButton.dataset.question = quizQuestion.question
+        quizButton.dataset.quizId = response.data.id
+        quizButton.dataset.answer = JSON.stringify(answerOption)
         if (answerOption.correct) {
-          quizAnswer.addEventListener("click", correctOptionHandler);
+          quizButton.addEventListener("click", correctOptionHandler);
         } else {
-          quizAnswer.addEventListener("click", incorrectOptionHandler);
+          quizButton.addEventListener("click", incorrectOptionHandler);
         }
-        quizAnswer.addEventListener("click", storeAnswerHandler)
-        quizQuestionDiv.appendChild(quizAnswer);
+
+        quizButton.addEventListener("click", storeAnswerHandler)
+        quizButtons.appendChild(quizButton);
+        buttonCounter++
       }
+
       const quizDiv = document.querySelector("#quiz-div");
-      quizDiv.appendChild(quizQuestionDiv);
+      quizDiv.append(quizContainer)
+      quizContainer.appendChild(quizTitle);
+      quizContainer.appendChild(quizImage);
+      quizContainer.appendChild(quizButtons);
+      
     } else {
       renderEndOfQuizPage();
     }
