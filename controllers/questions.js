@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.get('/', async (req, res, next) => {
     try {
-        const id = req.session.user
+        const id = req.session.user.id
         const result = await getAllQuestions(id) // Replace w. session ID
         return (result.length === 0) ? res.sendStatus(404) : res.status(200).json(result)
     } catch (error) {
@@ -28,7 +28,6 @@ router.post('/', async (req, res, next) => {
     try {
         const { quizId, question, userAnswer, correct } = req.body
         const userId = req.session.user.id
-        console.log(userId)
 
         if (!quizId || !question || !userAnswer) {
             const customError = new Error("Quiz ID, question and answers cannot be empty")
@@ -36,7 +35,7 @@ router.post('/', async (req, res, next) => {
             return next(customError)
         } 
         
-        const result = await createQuestion(userId, quizId, question, userAnswer, correct)
+        const result = await createQuestion(userId, quizId, question, userAnswer, correct.toString())
         return res.status(200).json(result[0])
     } catch (error) {
         return next(error)

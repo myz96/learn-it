@@ -53,16 +53,19 @@ const renderProgressPage = async () => {
     let highscore = 0
     for (const quizId in groupedData) {
         const quizData = groupedData[quizId]
-        const totalScore = quizData.reduce((accumulator, answer) => {
-            return accumulator + answer.correct
+        const totalScore = quizData.reduce((accumulator, correct) => {
+            const points = (correct.correct === 'true') ? 1 : 0
+            return accumulator + points
         }, 0)
         if (totalScore > highscore)
             highscore = totalScore
     }
 
+    console.log('res.data is', response.data)
     // Calculating percentage correct
-    const numberCorrect = response.data.reduce((accumulator, answer) => {
-        return accumulator + answer.correct
+    const numberCorrect = response.data.reduce((accumulator, correct) => {
+        const points = (correct.correct === 'true') ? 1 : 0
+        return accumulator + points 
     }, 0)
     const numberQuestions = response.data.length
     const percentCorrect = (numberCorrect/numberQuestions).toFixed(2) * 100

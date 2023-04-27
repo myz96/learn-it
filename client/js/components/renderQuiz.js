@@ -101,7 +101,7 @@ const renderQuiz = async (response) => {
       const quizId = parseInt(event.target.dataset.quizId)
       const answer = JSON.parse(event.target.dataset.answer)
       const body = {
-        userId: 1, //Replace w. session ID
+        userId: 1, //Replace w. session ID - this line not required...handled by backend?
         quizId: quizId,
         question: question,
         userAnswer: answer.text,
