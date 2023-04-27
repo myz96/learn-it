@@ -31,7 +31,6 @@ CREATE TABLE questions (
   quiz_id INT,
   question TEXT,
   user_answer TEXT,
-  correct_answer TEXT,
   correct INT,
   CONSTRAINT fk_questions_users
     FOREIGN KEY (user_id)

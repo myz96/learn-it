@@ -9,13 +9,26 @@ import renderQuiz from "./renderQuiz.js"
 const createQuiz = () => {
     const main = document.querySelector('#quiz-div')
     main.innerHTML = `
-    <form id="create-quiz">
-        <h1>Create new quiz</h1>
-        <p><label for="title">Title </label><input type="text" name="title" id="title" placeholder="e.g. Tom's Chemistry Quiz" size="25"></p>
-        <p><label for="topic">Topic </label><input type="text" name="topic" id="topic" placeholder="e.g. High School Chemistry" size="25"></p>
-        <p><label for="difficulty">Difficulty </label><input type="text" name="difficulty" id="difficulty" placeholder="e.g. Medium" size="25"></p>
-        <p><label for="context">Context </label><textarea type="text" name="context" id="context" rows="4" cols= "50" placeholder="Insert any additional context here (optional)"></textarea></p>
-        <button type="submit"> Create quiz </button>
+    <form id="create-quiz" data-action="create-quiz">
+      <h1 class="card-title text-center mb-4">Create new quiz</h1>
+      <section id="errors"></section>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" name="title" id="title" placeholder="e.g. Tom's Chemistry Quiz" size="25">
+      </div>
+      <div class="form-group">
+          <label for="topic">Topic</label>
+          <input type="text" class="form-control" name="topic" id="topic" placeholder="e.g. High School Chemistry" size="25">
+        </div>
+      <div class="form-group">
+        <label for="difficulty">Difficulty:</label>
+        <input type="difficulty" class="form-control" name="difficulty" id="difficulty" placeholder="e.g. Medium" size="25">
+      </div>
+      <div class="form-group">
+        <label for="context">Context</label>
+        <textarea class="form-control" name="context" id="context" rows="3" placeholder="Insert any additional context here (optional)"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Create quiz</button>
     </form>
     `
 
