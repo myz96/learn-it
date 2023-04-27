@@ -2,7 +2,7 @@ const { Configuration, OpenAIApi } = require("openai")
 
 const fetchImage = async (prompt) => {
     const config = new Configuration({
-        apiKey: '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'
+        apiKey: process.env.API_KEY
     })
 
     const openai = new OpenAIApi(config)
