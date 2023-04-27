@@ -24,7 +24,7 @@ const browseQuizzes = async () => {
 
         const shareIcon = document.createElement('a')
         shareIcon.classList.add('btn')
-        shareIcon.classList.add('btn-secondary')
+        shareIcon.classList.add('custom-btn')
         shareIcon.style.position = 'absolute'
         shareIcon.style.bottom = '20px'
         shareIcon.style.right = '10px'
@@ -75,7 +75,7 @@ const browseQuizzes = async () => {
         cardParagraph.classList.add('card-text')
         button.href = '#' // Replace with link to Quiz
         button.classList.add('btn')
-        button.classList.add('btn-primary')
+        button.classList.add('custom-btn')
 
         const quizResponse = await axios.get(`/api/quizzes/${quiz.id}`)
         cardTitle.textContent = quizResponse.data[0].title
