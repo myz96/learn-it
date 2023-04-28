@@ -83,6 +83,10 @@ body {
     background-color: #afb4b4dd;
 }
 
+.nav__btn button:hover > {
+    color: white;
+}
+
 .logout-btn {
     background-color: white;
     border: 1px solid white;
@@ -93,22 +97,22 @@ body {
     background-color: #afb4b4dd;
     border: 1px solid #afb4b4dd;
 
-  }
+}
 
-  .custom-btn {
-    background-color: #f2f2f2;
-    color: #212529;
-    transition: background-color 0.3s ease;
-    border: none;
-  }
+.custom-btn {
+background-color: #f2f2f2;
+color: #212529;
+transition: background-color 0.3s ease;
+border: none;
+}
 
-  .custom-btn:hover {
-    background-color: #c6c6c6;
-  }
-  
-  .custom-btn:active {
-    animation: flash 10s;
-  }
+.custom-btn:hover {
+background-color: #c6c6c6;
+}
+
+.custom-btn:active {
+animation: flash 10s;
+}
   
 
 .quiz-container{

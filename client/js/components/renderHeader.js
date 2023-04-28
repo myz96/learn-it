@@ -44,7 +44,7 @@ const renderHeader = (user) => {
           <div class="align-items-center justify-content-center nav__btn d-none d-xl-flex" data-render="profile">
           <button type="button" class="btn px-4" style="display: flex; align-items: center;">
             <img src="https://source.unsplash.com/collection/nature" class="rounded-circle me-2" alt="avatar" style="width: 30px; height: 30px; object-fit: cover" data-render="profile"/>
-            <p class="m-0 text-white" style="padding: 0 5px 0 10px;" data-render="profile">${user.first_name}</p>
+            <p class="m-0" style="padding: 0 5px 0 10px;" data-render="profile">${user.first_name}</p>
           </button>
         </div>
           <!-- notifications -->

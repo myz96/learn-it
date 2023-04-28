@@ -5,7 +5,6 @@ const handleForm = async (e) => {
     const body = Object.fromEntries(new FormData(form))
     
     const errorText = document.querySelector('#errors')
-    console.log(errorText)
 
     if (!body.email || !body.password) {
         errorText.textContent = "Email or password cannot be empty"

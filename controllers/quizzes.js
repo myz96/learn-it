@@ -1,5 +1,6 @@
 const express = require('express')
 const { getQuizById, createQuiz, deleteQuizById, updateQuizById, getAllQuizzesbyUserId } = require('../models/quiz')
+const { fetchImage } = require('../models/fetchImage')
 
 const router = express.Router()
 
@@ -7,6 +8,7 @@ router.get('/', async (req, res, next) => {
     try {
         const id = req.session.user.id
         const result = await getAllQuizzesbyUserId(id) // Replace with user session
+        // console.log(result)
         return (result.length === 0) ? res.sendStatus(404) : res.status(200).json(result)
     } catch (error) {
         return next(error)
@@ -27,7 +29,7 @@ router.post('/', async (req, res, next) => {
     try {
         const { title, topic } = req.body
         const userId = req.session.user.id
-        console.log(userId)
+        // console.log(userId)
 
         const difficulty = req.body.difficulty || 'medium'
         const context = req.body.context || ''
@@ -99,14 +101,12 @@ router.post('/', async (req, res, next) => {
             ]
         }
 
-        const imgUrl = 'https://oaidalleapiprodscus.blob.core.windows.net/private/org-M4tHPAmLSbtutEWD7DSkmcHM/user-k1CSFIT7U70b8IDeJ3WYKOJT/img-QnPgAg5wXpDMUfJZ69VkCS4t.png?st=2023-04-27T10%3A57%3A46Z&se=2023-04-27T12%3A57%3A46Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-04-27T11%3A42%3A02Z&ske=2023-04-28T11%3A42%3A02Z&sks=b&skv=2021-08-06&sig=5zOEVujZ4a5mkA4FSQr93mj5ub1Q8LEwe%2BV9gH2WsqM%3D'
+        // const imgUrl = 'https://source.unsplash.com/collection/nature'
 
         // const quizResponse = await fetchQuizFromLLM(quizQuery)
         // const quiz = JSON.parse(quizResponse)
-        // const imgUrl = await fetchImage(topic)
+        const imgUrl = await fetchImage(topic) 
 
-        // console.log(quiz)
-        // console.log(imgUrl)
         // Store JSON quiz into quiz database
         const quizResult = await createQuiz(userId, quiz, title, topic, difficulty, context, imgUrl)
 

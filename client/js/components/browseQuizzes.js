@@ -5,6 +5,7 @@ const browseQuizzes = async () => {
     const main = document.querySelector('#quiz-div')
 
     const response = await axios.get('/api/quizzes')
+    // console.log(response)
     main.innerHTML = `
     `
     for (let quiz of response.data) {
