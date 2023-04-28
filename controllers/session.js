@@ -26,7 +26,7 @@ router.post('/', async (req, res, next) => {
         if (user && isValidPassword(password, user.password_hash)){
             delete user.password_hash
             req.session.user = user
-            return res.status(200).json({ message: "Successfully Logged in!"})
+            return res.status(200).json({ message: "Successfully Logged in!", id: user.id})
         }
 
         const err = new Error("Invalid email address or password")

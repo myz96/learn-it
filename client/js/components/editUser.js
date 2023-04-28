@@ -1,6 +1,7 @@
 import browseQuizzes from "./browseQuizzes.js";
 
 const renderEditUser = async (user) => {
+  console.log('user', user)
     try {
       const { id, first_name, last_name, email } = user;
       const main = document.querySelector('#quiz-div');
@@ -44,6 +45,7 @@ const renderEditUser = async (user) => {
     const formData = new FormData(e.target);
   
     const id = parseInt(formData.get('id'));
+    //console.log(id)
   
     const body = {
       first_name: formData.get('first_name'),
@@ -52,6 +54,7 @@ const renderEditUser = async (user) => {
       password: formData.get('password'),
       confirm_password: formData.get('confirm_password')
     }
+    console.log('body: ', body)
   
     const options = {
       method: "PUT",
@@ -62,6 +65,7 @@ const renderEditUser = async (user) => {
     };
   
     try {
+      console.log(id)
       const res = await fetch(`/api/users/${id}`, options);
       // console.log(res);
       browseQuizzes();

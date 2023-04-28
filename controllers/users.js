@@ -115,6 +115,12 @@ router.put('/:id', async (req, res, next) => {
         const password_hash = generateHash(password)
 
         const result = await updateUserById(id, first_name, last_name, email, password_hash)
+        
+        // Update user with latest data from db 
+        const newResult = await getUserByEmail(email)
+        const newUserData = newResult[0]
+        req.session.user = newUserData
+
         return res.status(200).json(result[0])
     } catch (error) {
         return next(error)
