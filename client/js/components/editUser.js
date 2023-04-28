@@ -26,8 +26,8 @@ const renderEditUser = async (user) => {
             <input type="password" class="form-control" name="password" id="password" placeholder="Enter password" required>
           </div>
           <div class="form-group">
-            <label for="confirm-password">Confirm Password:</label>
-            <input type="password" class="form-control" name="confirm-password" id="confirm-password" placeholder="Confirm password" required>
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm password" required>
           </div>
           <button type="submit" class="btn btn-primary btn-block custom-btn">Edit User Details</button>
         </form>
@@ -49,7 +49,8 @@ const renderEditUser = async (user) => {
       first_name: formData.get('first_name'),
       last_name: formData.get('last_name'),
       email: formData.get('email'),
-      password: formData.get('password')
+      password: formData.get('password'),
+      confirm_password: formData.get('confirm_password')
     }
   
     const options = {

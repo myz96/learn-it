@@ -7,11 +7,13 @@ const router = express.Router()
 const generateHash = (password) => bcrypt.hashSync(password, bcrypt.genSaltSync(10), null)
 
 router.post('/', async (req, res, next) => {
+        console.log(req.body)
     try {
-        const { first_name, last_name, email, password } = Object.entries(req.body).reduce((o, [k, v]) => {
+        const { first_name, last_name, email, password, confirm_password } = Object.entries(req.body).reduce((o, [k, v]) => {
             o[k] = v.trim()
             return o
         }, {})
+        console.log(confirm_password)
 
         if (!first_name) {
             const customError = new Error("Please enter your First Name")
@@ -33,6 +35,12 @@ router.post('/', async (req, res, next) => {
 
         if (!password) {
             const customError = new Error("Please enter a password")
+            customError.status = 400
+            return next(customError)
+        }
+
+        if (password !== confirm_password) {
+            const customError = new Error("Passwords do not match")
             customError.status = 400
             return next(customError)
         }
@@ -72,7 +80,7 @@ router.get('/:email', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
     try {
         const id = parseInt(req.params.id)
-        const { first_name, last_name, email, password } = req.body
+        const { first_name, last_name, email, password, confirm_password } = req.body
 
         if (!first_name) {
             const customError = new Error("Please enter your First Name")
@@ -94,6 +102,12 @@ router.put('/:id', async (req, res, next) => {
 
         if (!password) {
             const customError = new Error("Please enter a password")
+            customError.status = 400
+            return next(customError)
+        }
+
+        if (password !== confirm_password) {
+            const customError = new Error("Passwords do not match")
             customError.status = 400
             return next(customError)
         }

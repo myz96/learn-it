@@ -15,7 +15,7 @@ const handleFormSubmit = async (e) => {
             errorText.textContent = "Name, email and password cannot be empty"
         } else if (existingUser.data[0]) {
             errorText.textContent = "Email address is already in use" 
-        } else if (body.password !== body['confirm-password']) {
+        } else if (body.password !== body['confirm_password']) {
             errorText.textContent = "Passwords do not match" 
         } else {
             const response = await axios.post('/api/users', body)
