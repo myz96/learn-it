@@ -5,18 +5,22 @@ const handleForm = async (e) => {
     const body = Object.fromEntries(new FormData(form))
     
     const errorText = document.querySelector('#errors')
+    console.log(errorText)
 
     if (!body.email || !body.password) {
         errorText.textContent = "Email or password cannot be empty"
     } else {
-        const response = await axios.post('/api/session', body)
-        console.log(response.data)
-        if (response.status !== 200) {
+        try {
+            const response = await axios.post('/api/session', body)
+            if (response.status !== 200) {
+                errorText.textContent = "Email or password is incorrect" 
+                return Promise.reject(response)
+            } else {
+                errorText.textContent = "Successfully logged in" 
+                return window.location.replace('/')
+            }
+        } catch {
             errorText.textContent = "Email or password is incorrect" 
-            return Promise.reject(response)
-        } else {
-            errorText.textContent = "Successfully logged in" 
-            return window.location.replace('/')
         }
     }
 } 
