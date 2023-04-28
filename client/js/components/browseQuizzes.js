@@ -14,6 +14,7 @@ const browseQuizzes = async () => {
         }
 
         const container = document.createElement('div')
+        container.style.paddingBottom = '110px'
         const deleteIcon = document.createElement('i')
         const image = document.createElement('img')
         const cardBody = document.createElement('div')
@@ -26,7 +27,8 @@ const browseQuizzes = async () => {
         shareIcon.classList.add('btn')
         shareIcon.classList.add('custom-btn')
         shareIcon.style.position = 'absolute'
-        shareIcon.style.bottom = '20px'
+        //shareIcon.style.bottom = '20px'
+        shareIcon.style.bottom = '130px'
         shareIcon.style.right = '10px'
         shareIcon.innerText = 'Share Quiz'
         cardBody.append(shareIcon)
@@ -43,14 +45,14 @@ const browseQuizzes = async () => {
             `To share with a friend, just send them this link: 
             <a href="${currentURL}share?id=${quiz.id}">${currentURL}share?id=${quiz.id}</a>
             <span class='close-share-url-div'>(Close)</span>`
-            container.style.paddingBottom = '110px'
-            shareIcon.style.bottom = '130px'
+            //container.style.paddingBottom = '110px'
+            //shareIcon.style.bottom = '130px'
             cardBody.append(shareUrlDiv)
             const closeShareUrlBtn = document.querySelector('.close-share-url-div')
             closeShareUrlBtn.addEventListener('click', function() {
                 shareUrlDiv.remove()
-                container.style.paddingBottom = '0px'
-                shareIcon.style.bottom = '20px'
+                //container.style.paddingBottom = '0px'
+                //shareIcon.style.bottom = '20px'
             })
         })
 
