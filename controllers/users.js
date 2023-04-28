@@ -40,6 +40,10 @@ router.post('/', async (req, res, next) => {
         const password_hash = generateHash(password)
 
         const result = await createUser(first_name, last_name, email, password_hash)
+        const user = result[0]
+        if (user) {
+            req.session.user = user
+        } 
         return res.status(200).json(result[0])
     } catch (error) {
         return next(error)
