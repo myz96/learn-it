@@ -32,7 +32,9 @@ Below is a diagram showing the db schema:
 ![Diagram showing the database structure](db-diagram.png) 
 
 ## Future features
-1. Personalized Quizzes: Utilizing user feedback on questions they got wrong to influence the generation of future quizzes, such as asking questions focused on areas that the user has struggled with, providing a more personalized learning experience.
-1. User Accounts: Implementing user accounts and authentication to allow users to save and manage their quizzes across different sessions.
-1. Quiz Customization: Allowing users to customize the generated quizzes by specifying the number of questions, difficulty level, and other parameters.
-1. Quiz Statistics: Providing users with statistics on their quiz performance, such as accuracy, time taken, and progress tracking. 
+1. Personalized Quizzes: using user feedback on questions they got wrong to influence the generation of future quizzes, such as asking questions focused on areas that the user has struggled with, providing a more personalized learning experience.
+1. Quiz Customization: Allowing users to further customize the generated quizzes e.g. by specifying the number of questions. 
+1. Quiz Statistics: Providing users with additional statistics on their quiz performance, such as time taken. 
+1. User strengths / weaknesses: investigate the use of ChatGPT to provide a summary of a users strengths / weaknesses.
+1. Unit tests: As a starting point, could be provided on the functions calculating user statistics. Ultimately, would ideally have complete test coverage. 
+1. How to guides / FAQ: provide some advice on ways that users can get the most out of the app, e.g. students could use the 'context' field to paste in text from a textbook, so that the quiz is more relevant to what they are studying.   
