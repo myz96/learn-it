@@ -1,6 +1,7 @@
 const express = require('express')
 const { getQuizById, createQuiz, deleteQuizById, updateQuizById, getAllQuizzesbyUserId } = require('../models/quiz')
 const { fetchImage } = require('../models/fetchImage')
+const { fetchQuizFromLLM } = require('../models/fetchQuiz')
 
 const router = express.Router()
 
@@ -43,69 +44,69 @@ router.post('/', async (req, res, next) => {
         } 
 
         // // Mock data
-        const quiz = {
-            "questions": [
-                {
-                "question": "What is the name of the Simpsons' next-door neighbor?",
-                "options": [
-                    {"text": "Moe", "correct": false},
-                    {"text": "Ned", "correct": true},
-                    {"text": "Lenny", "correct": false},
-                    {"text": "Carl", "correct": false}
-                ]
-                },
-                {
-                "question": "What is the name of Bart's best friend?",
-                "options": [
-                    {"text": "Milhouse", "correct": true},
-                    {"text": "Nelson", "correct": false},
-                    {"text": "Martin", "correct": false},
-                    {"text": "Ralph", "correct": false}
-                ]
-                },
-                {
-                "question": "What is the name of Homer's favorite bar?",
-                "options": [
-                    {"text": "Moe's Tavern", "correct": true},
-                    {"text": "The Rusty Nail", "correct": false},
-                    {"text": "The Drunken Clam", "correct": false},
-                    {"text": "The Alibi Room", "correct": false}
-                ]
-                },
-                {
-                "question": "What is the name of Lisa's jazz musician idol?",
-                "options": [
-                    {"text": "Bleeding Gums Murphy", "correct": true},
-                    {"text": "Cool Cat", "correct": false},
-                    {"text": "Fingers Murphy", "correct": false},
-                    {"text": "Jazzy Joe", "correct": false}
-                ]
-                },
-                {
-                "question": "What is the name of the Simpson family's pet greyhound?",
-                "options": [
-                    {"text": "Santa's Little Helper", "correct": true},
-                    {"text": "Laddie", "correct": false},
-                    {"text": "Ziggy", "correct": false},
-                    {"text": "Fido", "correct": false}
-                ]
-                },
-                {
-                "question": "What is the name of the town where the Simpsons live?",
-                "options": [
-                    {"text": "Springfield", "correct": true},
-                    {"text": "Shelbyville", "correct": false},
-                    {"text": "Capital City", "correct": false},
-                    {"text": "Ogdenville", "correct": false}
-                ]
-                }
-            ]
-        }
+        // const quiz = {
+        //     "questions": [
+        //         {
+        //         "question": "What is the name of the Simpsons' next-door neighbor?",
+        //         "options": [
+        //             {"text": "Moe", "correct": false},
+        //             {"text": "Ned", "correct": true},
+        //             {"text": "Lenny", "correct": false},
+        //             {"text": "Carl", "correct": false}
+        //         ]
+        //         },
+        //         {
+        //         "question": "What is the name of Bart's best friend?",
+        //         "options": [
+        //             {"text": "Milhouse", "correct": true},
+        //             {"text": "Nelson", "correct": false},
+        //             {"text": "Martin", "correct": false},
+        //             {"text": "Ralph", "correct": false}
+        //         ]
+        //         },
+        //         {
+        //         "question": "What is the name of Homer's favorite bar?",
+        //         "options": [
+        //             {"text": "Moe's Tavern", "correct": true},
+        //             {"text": "The Rusty Nail", "correct": false},
+        //             {"text": "The Drunken Clam", "correct": false},
+        //             {"text": "The Alibi Room", "correct": false}
+        //         ]
+        //         },
+        //         {
+        //         "question": "What is the name of Lisa's jazz musician idol?",
+        //         "options": [
+        //             {"text": "Bleeding Gums Murphy", "correct": true},
+        //             {"text": "Cool Cat", "correct": false},
+        //             {"text": "Fingers Murphy", "correct": false},
+        //             {"text": "Jazzy Joe", "correct": false}
+        //         ]
+        //         },
+        //         {
+        //         "question": "What is the name of the Simpson family's pet greyhound?",
+        //         "options": [
+        //             {"text": "Santa's Little Helper", "correct": true},
+        //             {"text": "Laddie", "correct": false},
+        //             {"text": "Ziggy", "correct": false},
+        //             {"text": "Fido", "correct": false}
+        //         ]
+        //         },
+        //         {
+        //         "question": "What is the name of the town where the Simpsons live?",
+        //         "options": [
+        //             {"text": "Springfield", "correct": true},
+        //             {"text": "Shelbyville", "correct": false},
+        //             {"text": "Capital City", "correct": false},
+        //             {"text": "Ogdenville", "correct": false}
+        //         ]
+        //         }
+        //     ]
+        // }
 
         // const imgUrl = 'https://source.unsplash.com/collection/nature'
 
-        // const quizResponse = await fetchQuizFromLLM(quizQuery)
-        // const quiz = JSON.parse(quizResponse)
+        const quizResponse = await fetchQuizFromLLM(quizQuery)
+        const quiz = JSON.parse(quizResponse)
         const imgUrl = await fetchImage(topic) 
 
         // Store JSON quiz into quiz database

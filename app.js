@@ -13,11 +13,12 @@ const shareController = require('./controllers/share')
 
 const logger = require('./middleware/logger')
 const errorHandler = require('./middleware/error-handler')
+const { initialiseDatabase } = require('./database/initialiseDatabase')
 
 const pgSession = require('connect-pg-simple')(session)
 
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 8080
 
 // Set up middleware from express 
 app.use(express.static('client'))
@@ -32,6 +33,8 @@ app.use(session({
     createTableIfMissing: true
   })
 }))
+
+initialiseDatabase().catch((err) => console.log(err))
 
 app.use(logger)
 
