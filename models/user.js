@@ -6,7 +6,7 @@ const getAllUsers = async () => {
 }
 
 const createUser = async (first_name, last_name, email, password_hash) => {
-  const sql = "INSERT INTO users (first_name, last_name, email, password_hash) VALUES ($1, $2, $3, $4) RETURNING first_name, last_name, email;"
+  const sql = "INSERT INTO users (first_name, last_name, email, password_hash) VALUES ($1, $2, $3, $4) RETURNING id, first_name, last_name, email;"
   const result = await db.query(sql, [first_name, last_name, email, password_hash])
   return result.rows
 }

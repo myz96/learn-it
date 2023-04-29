@@ -24,7 +24,7 @@ const handleFormSubmit = async (e) => {
                 return Promise.reject(response)
             } else {
                 errorText.textContent = "Account successfully created"
-                return window.location = '/login.html'
+                return window.location = '/'
             }
         }
     } catch {

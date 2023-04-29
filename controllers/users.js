@@ -6,6 +6,7 @@ const router = express.Router()
 
 const generateHash = (password) => bcrypt.hashSync(password, bcrypt.genSaltSync(10), null)
 
+// Sign up
 router.post('/', async (req, res, next) => {
     try {
         const { first_name, last_name, email, password, confirm_password } = Object.entries(req.body).reduce((o, [k, v]) => {
@@ -48,6 +49,7 @@ router.post('/', async (req, res, next) => {
         const result = await createUser(first_name, last_name, email, password_hash)
         const user = result[0]
         if (user) {
+            console.log(user)
             req.session.user = user
         } 
         return res.status(200).json(result[0])
