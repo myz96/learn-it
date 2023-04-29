@@ -1,7 +1,7 @@
 const pg = require('pg')
 
 const db = new pg.Pool({
-  database: 'sei-project-3'
+  database: 'sei_project_3'
 })
 
 module.exports = db
