@@ -113,6 +113,7 @@ const renderQuiz = async (response) => {
   // Renders the end of quiz page
   function renderEndOfQuizPage() {
     const quizQuestionDiv = document.createElement("div");
+    quizQuestionDiv.classList.add('quiz-container-div-1')
     quizQuestionDiv.innerHTML = `<h3>End of quiz!</h3>
     <p>You got ${playerPoints} questions correct!</p>`;
     const quizDiv = document.querySelector("#quiz-div");
@@ -129,8 +130,8 @@ const renderQuiz = async (response) => {
     shareIcon.addEventListener('click', function(event) {
         const shareUrlDiv = document.createElement('div')
         shareUrlDiv.classList.add('share-url-div')
-        shareUrlDiv.style.position = 'absolute'
-        shareUrlDiv.style.left = '0px'
+        //shareUrlDiv.style.position = 'absolute'
+        //shareUrlDiv.style.left = '0px'
         shareUrlDiv.style.padding = '20px'
         shareUrlDiv.style.margin = '20px'
         //const currentURL = document.URL.replace(/#/,"");
@@ -141,7 +142,7 @@ const renderQuiz = async (response) => {
         `To share with a friend, just send them this link: 
         <a href="${currentURL}share?id=${quizId}">${currentURL}share?id=${quizId}</a>
         <span class='close-share-url-div'>(Close)</span>`
-        quizDiv.append(shareUrlDiv)
+        quizQuestionDiv.appendChild(shareUrlDiv)
         const closeShareUrlBtn = document.querySelector('.close-share-url-div')
         closeShareUrlBtn.addEventListener('click', function() {
             shareUrlDiv.remove()
