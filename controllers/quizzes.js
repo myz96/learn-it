@@ -9,7 +9,8 @@ router.get('/', async (req, res, next) => {
         const id = req.session.user.id
         const result = await getAllQuizzesbyUserId(id) // Replace with user session
         // console.log(result)
-        return (result.length === 0) ? res.sendStatus(404) : res.status(200).json(result)
+        // return (result.length === 0) ? res.sendStatus(404) : res.status(200).json(result)
+        return res.status(200).json(result)
     } catch (error) {
         return next(error)
     }
