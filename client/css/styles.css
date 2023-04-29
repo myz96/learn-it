@@ -171,6 +171,12 @@ body {
     opacity: 0.8;
 }
 
+.learn-it{
+
+    font-family: 'Raleway Dots',cursive;
+    font-size: 5em;
+
+}
 .share-mode-header {
     text-align: center;
     padding: 10px;
