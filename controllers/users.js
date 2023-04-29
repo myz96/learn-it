@@ -8,13 +8,11 @@ const generateHash = (password) => bcrypt.hashSync(password, bcrypt.genSaltSync(
 
 // Sign up
 router.post('/', async (req, res, next) => {
-        console.log(req.body)
     try {
         const { first_name, last_name, email, password, confirm_password } = Object.entries(req.body).reduce((o, [k, v]) => {
             o[k] = v.trim()
             return o
         }, {})
-        console.log(confirm_password)
 
         if (!first_name) {
             const customError = new Error("Please enter your First Name")
@@ -73,7 +71,8 @@ router.get('/:email', async (req, res, next) => {
     try {
         const email = req.params.email
         const user = await getUserByEmail(email)
-        return res.status(201).json(user)
+        if (user.length === 0) return res.status(404).end()
+        return res.status(200).json(user)
     } catch (error) {
         next(error)
     }
