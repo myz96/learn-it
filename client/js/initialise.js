@@ -5,7 +5,6 @@ const initialise = async () => {
     try {
         const res = await axios.get('/api/session')
         const data = res.data
-        //console.log(res.data.session || 'empty')
 
         if ('user' in data){
             renderHeader(data.user)

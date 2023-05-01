@@ -6,7 +6,6 @@ const browseQuizzes = async () => {
 
     try {
         const response = await axios.get('/api/quizzes')
-        // console.log(response)
         if (response.data.length === 0) {
             main.innerHTML = `<div id='quiz-div'>You don't have any quizzes yet. <br> Click the + icon above to create one now!</div>` 
         } 
@@ -32,7 +31,6 @@ const browseQuizzes = async () => {
                 shareIcon.classList.add('btn')
                 shareIcon.classList.add('custom-btn')
                 shareIcon.style.position = 'absolute'
-                //shareIcon.style.bottom = '20px'
                 shareIcon.style.bottom = '130px'
                 shareIcon.style.right = '10px'
                 shareIcon.innerText = 'Share Quiz'
@@ -44,20 +42,15 @@ const browseQuizzes = async () => {
                     shareUrlDiv.style.bottom = '0px'
                     shareUrlDiv.style.left = '0px'
                     shareUrlDiv.style.width = '100%'
-                    //const currentURL = document.URL.replace(/#/,"");
                     const currentURL = `${window.location.origin}/`
                     shareUrlDiv.innerHTML = 
                     `To share with a friend, just send them this link: 
                     <a href="${currentURL}share?id=${quiz.id}">${currentURL}share?id=${quiz.id}</a>
                     <span class='close-share-url-div'>(Close)</span>`
-                    //container.style.paddingBottom = '110px'
-                    //shareIcon.style.bottom = '130px'
                     cardBody.append(shareUrlDiv)
                     const closeShareUrlBtn = document.querySelector('.close-share-url-div')
                     closeShareUrlBtn.addEventListener('click', function() {
                         shareUrlDiv.remove()
-                        //container.style.paddingBottom = '0px'
-                        //shareIcon.style.bottom = '20px'
                     })
                 })
 
@@ -80,7 +73,7 @@ const browseQuizzes = async () => {
                 cardSubtitle.classList.add('mb-2')
                 cardSubtitle.classList.add('text-muted')
                 cardParagraph.classList.add('card-text')
-                button.href = '#' // Replace with link to Quiz
+                button.href = '#' 
                 button.classList.add('btn')
                 button.classList.add('custom-btn')
 

@@ -3,9 +3,6 @@
 import renderLoadingPage from "./renderLoading.js"
 import renderQuiz from "./renderQuiz.js"
 
-// Mock Data to be replaced with chatGPT api response
-
-
 const createQuiz = () => {
     const main = document.querySelector('#quiz-div')
     main.innerHTML = `
@@ -40,7 +37,10 @@ const handleFormSubmit = async (e) => {
         e.preventDefault()
 
         const body = Object.fromEntries(new FormData(e.target))
-        body.userId = 1 // Replace with user session
+        // body.userId = 1 // Replace with user session
+
+        const res = await axios.get('/api/session')
+        body.userId = res.data.user.id
 
         renderLoadingPage()
         const response = await axios.post('/api/quizzes', body)

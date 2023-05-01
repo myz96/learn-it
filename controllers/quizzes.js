@@ -8,9 +8,7 @@ const router = express.Router()
 router.get('/', async (req, res, next) => {
     try {
         const id = req.session.user.id
-        const result = await getAllQuizzesbyUserId(id) // Replace with user session
-        // console.log(result)
-        // return (result.length === 0) ? res.sendStatus(404) : res.status(200).json(result)
+        const result = await getAllQuizzesbyUserId(id) 
         return res.status(200).json(result)
     } catch (error) {
         return next(error)
@@ -31,7 +29,6 @@ router.post('/', async (req, res, next) => {
     try {
         const { title, topic } = req.body
         const userId = req.session.user.id
-        // console.log(userId)
 
         const difficulty = req.body.difficulty || 'medium'
         const context = req.body.context || ''

@@ -101,12 +101,13 @@ const renderQuiz = async (response) => {
       const quizId = parseInt(event.target.dataset.quizId)
       const answer = JSON.parse(event.target.dataset.answer)
       const body = {
-        userId: 1, //Replace w. session ID - this line not required...handled by backend?
         quizId: quizId,
         question: question,
         userAnswer: answer.text,
         correct: answer.correct
       }
+      const res = await axios.get('/api/session')
+      body.userId = res.data.user.id
       const response = await axios.post('/api/questions', body)
     }
 
@@ -130,13 +131,8 @@ const renderQuiz = async (response) => {
     shareIcon.addEventListener('click', function(event) {
         const shareUrlDiv = document.createElement('div')
         shareUrlDiv.classList.add('share-url-div')
-        //shareUrlDiv.style.position = 'absolute'
-        //shareUrlDiv.style.left = '0px'
         shareUrlDiv.style.padding = '20px'
         shareUrlDiv.style.margin = '20px'
-        //const currentURL = document.URL.replace(/#/,"");
-        // console.log('docURL', document.URL)
-        // console.log('win loc', window.location)
         const currentURL = `${window.location.origin}/`
         shareUrlDiv.innerHTML = 
         `To share with a friend, just send them this link: 
