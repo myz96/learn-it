@@ -31,7 +31,12 @@ Below is the image of the basic architecture of the app including front-end, bac
 Below is a diagram showing the db schema: 
 ![Diagram showing the database structure](db-diagram.png) 
 
+## Architecture
+https://sei-project-3-learn-it.fly.dev/signup.html
+
 ## Future features
+1. Persist Dall-e images in AWS S3 bucket
+1. Persist app information through fly io postgres database
 1. Personalized Quizzes: Utilizing user feedback on questions they got wrong to influence the generation of future quizzes, such as asking questions focused on areas that the user has struggled with, providing a more personalized learning experience.
 1. User Accounts: Implementing user accounts and authentication to allow users to save and manage their quizzes across different sessions.
 1. Quiz Customization: Allowing users to customize the generated quizzes by specifying the number of questions, difficulty level, and other parameters.
